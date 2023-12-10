@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const payeeSlice = createSlice({
   name: "payees",
@@ -11,7 +11,9 @@ const payeeSlice = createSlice({
       return action.payload;
     },
     updatePayee(state, action: PayloadAction<IPayee>) {
-      return state.map((payee) => (payee.id === action.payload.id ? action.payload : payee));
+      return state.map((payee) =>
+        payee.id === action.payload.id ? action.payload : payee,
+      );
     },
     deletePayee(state, action: PayloadAction<string>) {
       return state.filter((payee) => payee.id !== action.payload);
@@ -19,5 +21,6 @@ const payeeSlice = createSlice({
   },
 });
 
-export const { addPayee, setPayees, updatePayee, deletePayee } = payeeSlice.actions;
+export const { addPayee, setPayees, updatePayee, deletePayee } =
+  payeeSlice.actions;
 export const payeeReducer = payeeSlice.reducer;

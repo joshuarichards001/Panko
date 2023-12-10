@@ -1,7 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { EnhancedStore, combineReducers, configureStore } from "@reduxjs/toolkit";
-import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from "redux-persist";
-import { rootCustomMiddleware } from "./middleware";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
+} from "redux-persist";
 import { accountReducer } from "./slices/accountSlice";
 import { budgetReducer } from "./slices/budgetSlice";
 import { categoryGroupReducer } from "./slices/categoryGroupSlice";
@@ -27,7 +35,8 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store: EnhancedStore = configureStore({
+// TODO: Add middleware to handle async actions
+export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -35,7 +44,7 @@ export const store: EnhancedStore = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(rootCustomMiddleware),
+    }), // .concat(rootCustomMiddleware),
 });
 
 export const persistor = persistStore(store);

@@ -1,45 +1,69 @@
-import { Text as DefaultText, TextInput as DefaultTextInput, View as DefaultView, useColorScheme } from "react-native";
-import { Colors, ITheme } from "../constants/Colors";
+import React from "react";
+import {
+  Text as DefaultText,
+  TextInput as DefaultTextInput,
+  View as DefaultView,
+  useColorScheme,
+} from "react-native";
+import { colors, type ITheme } from "../constants/colors";
 
-type ThemeProps = {
+interface ThemeProps {
   themeColor?: keyof ITheme;
-};
+}
 
-export function useThemeColor() {
+export function useThemeColor(): ITheme {
   const theme = useColorScheme() ?? "light";
-  return Colors[theme];
+  return colors[theme];
 }
 
 export type TextProps = ThemeProps & DefaultText["props"];
 export type ViewProps = ThemeProps & DefaultView["props"];
 export type TextInputProps = ThemeProps & DefaultTextInput["props"];
 
-export function Text(props: TextProps) {
-  const { style, themeColor, ...otherProps } = props;
-  const { text } = useThemeColor();
-
-  return <DefaultText style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]} {...otherProps} />;
-}
-
-export function TitleText(props: TextProps) {
-  const { style, themeColor, ...otherProps } = props;
-  const { text } = useThemeColor();
-
-  return <DefaultText style={[{ color: text, fontSize: 17, fontFamily: "InterBold" }, style]} {...otherProps} />;
-}
-
-export function TextInput(props: TextInputProps) {
+export function Text(props: TextProps): React.JSX.Element {
   const { style, themeColor, ...otherProps } = props;
   const { text } = useThemeColor();
 
   return (
-    <DefaultTextInput style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]} {...otherProps} />
+    <DefaultText
+      style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]}
+      {...otherProps}
+    />
   );
 }
 
-export function View(props: ViewProps) {
+export function TitleText(props: TextProps): React.JSX.Element {
+  const { style, themeColor, ...otherProps } = props;
+  const { text } = useThemeColor();
+
+  return (
+    <DefaultText
+      style={[{ color: text, fontSize: 17, fontFamily: "InterBold" }, style]}
+      {...otherProps}
+    />
+  );
+}
+
+export function TextInput(props: TextInputProps): React.JSX.Element {
+  const { style, themeColor, ...otherProps } = props;
+  const { text } = useThemeColor();
+
+  return (
+    <DefaultTextInput
+      style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]}
+      {...otherProps}
+    />
+  );
+}
+
+export function View(props: ViewProps): React.JSX.Element {
   const { style, themeColor, ...otherProps } = props;
   const { background } = useThemeColor();
 
-  return <DefaultView style={[{ backgroundColor: background }, style]} {...otherProps} />;
+  return (
+    <DefaultView
+      style={[{ backgroundColor: background }, style]}
+      {...otherProps}
+    />
+  );
 }

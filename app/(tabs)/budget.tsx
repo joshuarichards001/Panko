@@ -1,13 +1,10 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Text, View } from "../../components/Themed";
+import { Text, View } from "../../components/themed";
 
-export default function budget() {
+export default function Budget(): React.JSX.Element {
   return (
     <View>
       <Text>budget</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

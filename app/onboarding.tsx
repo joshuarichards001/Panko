@@ -1,12 +1,12 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { Animated, ScrollView, StyleSheet } from "react-native";
+import { Animated, StyleSheet, type ScrollView } from "react-native";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
-import OnboardingAccountSlide from "../components/Onboarding/OnboardingAccountSlide";
-import OnboardingCategorySlide from "../components/Onboarding/OnboardingCategorySlide";
-import OnboardingWelcomeSlide from "../components/Onboarding/OnboardingWelcomeSlide";
-import { View, useThemeColor } from "../components/Themed";
+import OnboardingAccountSlide from "../components/onboarding/onboardingAccountSlide";
+import OnboardingCategorySlide from "../components/onboarding/onboardingCategorySlide";
+import OnboardingWelcomeSlide from "../components/onboarding/onboardingWelcomeSlide";
+import { View, useThemeColor } from "../components/themed";
 import { width } from "../constants/constants";
 import { useAppDispatch } from "../redux/hooks";
 import { setAccounts } from "../redux/slices/accountSlice";
@@ -14,7 +14,7 @@ import { setBudgets } from "../redux/slices/budgetSlice";
 import { setCategories } from "../redux/slices/categorySlice";
 import { setUser } from "../redux/slices/userSlice";
 
-export default function onboarding() {
+export default function Onboarding(): React.JSX.Element {
   const dispatch = useAppDispatch();
   const scrollRef = React.useRef<ScrollView>(null);
   const [categoryGroups, setCategoryGroups] = useState<ICategoryGroup[]>([]);
@@ -24,7 +24,7 @@ export default function onboarding() {
   const { primary, grey3 } = useThemeColor();
   const budgetId = uuidv4();
 
-  const handlePageTurn = (direction: "backward" | "forward") => {
+  const handlePageTurn = (direction: "backward" | "forward"): void => {
     const increment = direction === "forward" ? 1 : -1;
     const nextPage = currentPage + increment;
 
@@ -32,20 +32,25 @@ export default function onboarding() {
     scrollRef.current?.scrollTo({ x: nextPage * width, animated: true });
   };
 
-  const getDotBackgroundColor = (index: number) => {
+  const getDotBackgroundColor = (index: number): string => {
     return index === currentPage ? primary : grey3;
   };
 
-  const renderProgressDots = () => {
+  const renderProgressDots = (): React.JSX.Element[] => {
     const pageCount = 3;
     const dots = [];
     for (let i = 0; i < pageCount; i++) {
-      dots.push(<View key={i} style={[styles.dot, { backgroundColor: getDotBackgroundColor(i) }]} />);
+      dots.push(
+        <View
+          key={i}
+          style={[styles.dot, { backgroundColor: getDotBackgroundColor(i) }]}
+        />,
+      );
     }
     return dots;
   };
 
-  const completeOnboarding = () => {
+  const completeOnboarding = (): void => {
     const user: IUser = {
       id: uuidv4(),
       isOnboarded: true,
@@ -57,7 +62,7 @@ export default function onboarding() {
     const budget: IBudget = {
       id: budgetId,
       name: "My Budget",
-      defaultAccountId: accounts[0].id,
+      defaultAccountId: accounts[0]?.id,
     };
 
     dispatch(setUser(user));

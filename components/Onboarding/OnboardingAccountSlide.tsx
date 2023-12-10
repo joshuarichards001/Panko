@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { onboardingStyles } from "../../constants/styles";
-import SettingsButton from "../SettingsButton";
-import { Text, TitleText, View, useThemeColor } from "../Themed";
+import SettingsButton from "../settingsButton";
+import { Text, TitleText, View } from "../themed";
 
-type Props = {
+interface Props {
   completeOnboarding: () => void;
   accounts: IAccount[];
   setAccounts: React.Dispatch<React.SetStateAction<IAccount[]>>;
   budgetId: string;
   handlePageTurn: (direction: "backward" | "forward") => void;
-};
+}
 
 export default function OnboardingAccountSlide({
   completeOnboarding,
@@ -18,9 +18,9 @@ export default function OnboardingAccountSlide({
   setAccounts,
   budgetId,
   handlePageTurn,
-}: Props) {
-  const [numAccountInputs, setNumAccountInputs] = useState(0);
-  const { grey4 } = useThemeColor();
+}: Props): React.JSX.Element {
+  // const [numAccountInputs, setNumAccountInputs] = useState(0);
+  // const { grey4 } = useThemeColor();
 
   // const renderAccountInputs = () => {
   //   const inputs = [];
@@ -41,22 +41,29 @@ export default function OnboardingAccountSlide({
   return (
     <View style={onboardingStyles.container}>
       <View>
-        <TouchableOpacity style={onboardingStyles.backButton} onPress={() => handlePageTurn("backward")}>
+        <TouchableOpacity
+          style={onboardingStyles.backButton}
+          onPress={() => {
+            handlePageTurn("backward");
+          }}
+        >
           <Text>Back</Text>
         </TouchableOpacity>
         <View style={onboardingStyles.contentContainer}>
-          <TitleText style={onboardingStyles.title}>List Your Accounts</TitleText>
+          <TitleText style={onboardingStyles.title}>
+            List Your Accounts
+          </TitleText>
           <ScrollView style={styles.accountsContainer}>
             {/* <OnboardingAccountInput
               accounts={accounts}
               setAccounts={setAccounts}
               budgetId={budgetId}
               placeholder="e.g. Checking..."
-            /> 
+            />
             {renderAccountInputs()}
             <TouchableOpacity onPress={() => setNumAccountInputs(numAccountInputs + 1)}>
               <Text style={{ color: grey4 }}>+ Add Another</Text>
-            </TouchableOpacity>*/}
+            </TouchableOpacity> */}
           </ScrollView>
         </View>
       </View>

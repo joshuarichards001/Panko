@@ -1,7 +1,11 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -10,7 +14,7 @@ import { persistor, store } from "../redux/store";
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+export default function RootLayout(): React.JSX.Element {
   const colorScheme = useColorScheme();
   const [loaded, error] = useFonts({
     InterBold: require("../assets/fonts/Inter-Bold.ttf"),
@@ -18,7 +22,7 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (error) throw error; // TODO: Implement Sentry for error handling.
+    if (error != null) throw error; // TODO: Implement Sentry for error handling.
   }, [error]);
 
   useEffect(() => {
@@ -26,13 +30,15 @@ export default function RootLayout() {
   }, [loaded]);
 
   if (!loaded) {
-    return null;
+    return <></>;
   }
 
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

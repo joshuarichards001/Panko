@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const transactionSlice = createSlice({
   name: "transactions",
@@ -11,7 +11,9 @@ const transactionSlice = createSlice({
       return action.payload;
     },
     updateTransaction(state, action: PayloadAction<ITransaction>) {
-      return state.map((transaction) => (transaction.id === action.payload.id ? action.payload : transaction));
+      return state.map((transaction) =>
+        transaction.id === action.payload.id ? action.payload : transaction,
+      );
     },
     deleteTransaction(state, action: PayloadAction<string>) {
       return state.filter((transaction) => transaction.id !== action.payload);
@@ -19,5 +21,10 @@ const transactionSlice = createSlice({
   },
 });
 
-export const { addTransaction, setTransactions, updateTransaction, deleteTransaction } = transactionSlice.actions;
+export const {
+  addTransaction,
+  setTransactions,
+  updateTransaction,
+  deleteTransaction,
+} = transactionSlice.actions;
 export const transactionReducer = transactionSlice.reducer;

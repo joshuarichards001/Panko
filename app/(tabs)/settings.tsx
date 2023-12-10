@@ -1,13 +1,10 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Text, View } from "../../components/Themed";
+import { Text, View } from "../../components/themed";
 
-export default function settings() {
+export default function Settings(): React.JSX.Element {
   return (
     <View>
       <Text>settings</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

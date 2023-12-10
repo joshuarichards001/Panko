@@ -14,7 +14,15 @@ export const themeDropdownItemList: IPickerItem[] = [
   { label: "System", value: "system" },
 ];
 
-export const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+export const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 export const daysOfMonth = [
   "1st",

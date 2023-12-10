@@ -3,7 +3,7 @@ import { height, width } from "./constants";
 
 export const onboardingStyles = StyleSheet.create({
   container: {
-    width: width,
+    width,
     padding: 30,
     paddingBottom: 50,
     justifyContent: "space-between",

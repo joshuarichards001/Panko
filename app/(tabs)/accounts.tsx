@@ -1,13 +1,10 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Text, View } from "../../components/Themed";
+import { Text, View } from "../../components/themed";
 
-export default function accounts() {
+export default function Accounts(): React.JSX.Element {
   return (
     <View>
       <Text>accounts</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

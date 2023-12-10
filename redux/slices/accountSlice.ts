@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const accountSlice = createSlice({
   name: "accounts",
@@ -11,7 +11,9 @@ const accountSlice = createSlice({
       return action.payload;
     },
     updateAccount(state, action: PayloadAction<IAccount>) {
-      return state.map((account) => (account.id === action.payload.id ? action.payload : account));
+      return state.map((account) =>
+        account.id === action.payload.id ? action.payload : account,
+      );
     },
   },
 });

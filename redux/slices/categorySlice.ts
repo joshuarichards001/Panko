@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const categorySlice = createSlice({
   name: "categories",
@@ -11,7 +11,9 @@ const categorySlice = createSlice({
       return action.payload;
     },
     updateCategory(state, action: PayloadAction<ICategory>) {
-      return state.map((category) => (category.id === action.payload.id ? action.payload : category));
+      return state.map((category) =>
+        category.id === action.payload.id ? action.payload : category,
+      );
     },
     deleteCategory(state, action: PayloadAction<string>) {
       return state.filter((category) => category.id !== action.payload);
@@ -19,5 +21,6 @@ const categorySlice = createSlice({
   },
 });
 
-export const { addCategory, setCategories, updateCategory, deleteCategory } = categorySlice.actions;
+export const { addCategory, setCategories, updateCategory, deleteCategory } =
+  categorySlice.actions;
 export const categoryReducer = categorySlice.reducer;

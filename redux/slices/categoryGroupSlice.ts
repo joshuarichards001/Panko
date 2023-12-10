@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const categoryGroupSlice = createSlice({
   name: "categoryGroups",
@@ -11,7 +11,9 @@ const categoryGroupSlice = createSlice({
       return action.payload;
     },
     updateCategoryGroup(state, action: PayloadAction<ICategoryGroup>) {
-      return state.map((category) => (category.id === action.payload.id ? action.payload : category));
+      return state.map((category) =>
+        category.id === action.payload.id ? action.payload : category,
+      );
     },
     deleteCategoryGroup(state, action: PayloadAction<string>) {
       return state.filter((category) => category.id !== action.payload);
@@ -19,6 +21,10 @@ const categoryGroupSlice = createSlice({
   },
 });
 
-export const { addCategoryGroup, setCategoryGroups, updateCategoryGroup, deleteCategoryGroup } =
-  categoryGroupSlice.actions;
+export const {
+  addCategoryGroup,
+  setCategoryGroups,
+  updateCategoryGroup,
+  deleteCategoryGroup,
+} = categoryGroupSlice.actions;
 export const categoryGroupReducer = categoryGroupSlice.reducer;

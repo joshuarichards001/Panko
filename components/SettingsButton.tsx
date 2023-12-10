@@ -1,13 +1,26 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { generalStyles } from "../constants/styles";
-import { Text, useThemeColor } from "./Themed";
+import { Text, useThemeColor } from "./themed";
 
-export default function SettingsButton({ onPress, text }: { onPress: any; text: string }) {
+export default function SettingsButton({
+  onPress,
+  text,
+}: {
+  onPress: any;
+  text: string;
+}): React.JSX.Element {
   const { primary } = useThemeColor();
 
   return (
-    <TouchableOpacity style={[styles.button, generalStyles.boxShadow, { backgroundColor: primary }]} onPress={onPress}>
+    <TouchableOpacity
+      style={[
+        styles.button,
+        generalStyles.boxShadow,
+        { backgroundColor: primary },
+      ]}
+      onPress={onPress}
+    >
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );

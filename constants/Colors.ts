@@ -1,4 +1,4 @@
-const ColorPalette = {
+const colorPalette = {
   black: "#000000",
   white: "#ffffff",
   neutral900: "#1a1a1a",
@@ -48,7 +48,7 @@ const ColorPalette = {
   red100: "#f8ccd1",
 };
 
-export type ITheme = {
+export interface ITheme {
   text: string;
   background: string;
   tabIconDefault: string;
@@ -61,38 +61,38 @@ export type ITheme = {
   grey3: string;
   grey4: string;
   grey5: string;
-};
+}
 
-export const Colors: {
+export const colors: {
   light: ITheme;
   dark: ITheme;
 } = {
   light: {
-    text: ColorPalette.black,
-    background: ColorPalette.white,
-    tabIconDefault: ColorPalette.neutral300,
-    tabIconSelected: ColorPalette.primary500,
-    primary: ColorPalette.primary500,
-    secondary: ColorPalette.secondary500,
-    error: ColorPalette.red500,
-    grey1: ColorPalette.neutral100,
-    grey2: ColorPalette.neutral200,
-    grey3: ColorPalette.neutral300,
-    grey4: ColorPalette.neutral400,
-    grey5: ColorPalette.neutral500,
+    text: colorPalette.black,
+    background: colorPalette.white,
+    tabIconDefault: colorPalette.neutral300,
+    tabIconSelected: colorPalette.primary500,
+    primary: colorPalette.primary500,
+    secondary: colorPalette.secondary500,
+    error: colorPalette.red500,
+    grey1: colorPalette.neutral100,
+    grey2: colorPalette.neutral200,
+    grey3: colorPalette.neutral300,
+    grey4: colorPalette.neutral400,
+    grey5: colorPalette.neutral500,
   },
   dark: {
-    text: ColorPalette.white,
-    background: ColorPalette.black,
-    tabIconDefault: ColorPalette.neutral400,
-    tabIconSelected: ColorPalette.white,
-    primary: ColorPalette.primary500,
-    secondary: ColorPalette.secondary500,
-    error: ColorPalette.red500,
-    grey1: ColorPalette.neutral900,
-    grey2: ColorPalette.neutral800,
-    grey3: ColorPalette.neutral700,
-    grey4: ColorPalette.neutral600,
-    grey5: ColorPalette.neutral500,
+    text: colorPalette.white,
+    background: colorPalette.black,
+    tabIconDefault: colorPalette.neutral400,
+    tabIconSelected: colorPalette.white,
+    primary: colorPalette.primary500,
+    secondary: colorPalette.secondary500,
+    error: colorPalette.red500,
+    grey1: colorPalette.neutral900,
+    grey2: colorPalette.neutral800,
+    grey3: colorPalette.neutral700,
+    grey4: colorPalette.neutral600,
+    grey5: colorPalette.neutral500,
   },
 };

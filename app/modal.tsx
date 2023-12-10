@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet } from "react-native";
-import { Text, View } from "../components/Themed";
+import React from "react";
+import { Platform } from "react-native";
+import { Text, View } from "../components/themed";
 
-export default function ModalScreen() {
+export default function ModalScreen(): React.JSX.Element {
   return (
     <View>
       <Text>Modal</Text>
@@ -10,5 +11,3 @@ export default function ModalScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});
