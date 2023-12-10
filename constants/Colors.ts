@@ -1,14 +1,15 @@
-const baseColorPalette = {
+const ColorPalette = {
   black: "#000000",
-  neutral800: "#1a1a1a",
-  neutral700: "#333333",
-  neutral600: "#4d4d4d",
-  neutral500: "#666666",
-  neutral400: "#808080",
-  neutral300: "#b3b3b3",
-  neutral200: "#cccccc",
-  neutral100: "#e6e6e6",
   white: "#ffffff",
+  neutral900: "#1a1a1a",
+  neutral800: "#333333",
+  neutral700: "#4d4d4d",
+  neutral600: "#666666",
+  neutral500: "#808080",
+  neutral400: "#999999",
+  neutral300: "#b2b2b2",
+  neutral200: "#cccccc",
+  neutral100: "#e5e5e5",
   primary900: "#00232f",
   primary800: "#00465e",
   primary700: "#006a8d",
@@ -55,6 +56,11 @@ export type ITheme = {
   primary: string;
   secondary: string;
   error: string;
+  grey1: string;
+  grey2: string;
+  grey3: string;
+  grey4: string;
+  grey5: string;
 };
 
 export const Colors: {
@@ -62,21 +68,31 @@ export const Colors: {
   dark: ITheme;
 } = {
   light: {
-    text: baseColorPalette.black,
-    background: baseColorPalette.white,
-    tabIconDefault: baseColorPalette.neutral300,
-    tabIconSelected: baseColorPalette.primary500,
-    primary: baseColorPalette.primary500,
-    secondary: baseColorPalette.secondary500,
-    error: baseColorPalette.red500,
+    text: ColorPalette.black,
+    background: ColorPalette.white,
+    tabIconDefault: ColorPalette.neutral300,
+    tabIconSelected: ColorPalette.primary500,
+    primary: ColorPalette.primary500,
+    secondary: ColorPalette.secondary500,
+    error: ColorPalette.red500,
+    grey1: ColorPalette.neutral100,
+    grey2: ColorPalette.neutral200,
+    grey3: ColorPalette.neutral300,
+    grey4: ColorPalette.neutral400,
+    grey5: ColorPalette.neutral500,
   },
   dark: {
-    text: baseColorPalette.white,
-    background: baseColorPalette.black,
-    tabIconDefault: baseColorPalette.neutral400,
-    tabIconSelected: baseColorPalette.white,
-    primary: baseColorPalette.primary500,
-    secondary: baseColorPalette.secondary500,
-    error: baseColorPalette.red500,
+    text: ColorPalette.white,
+    background: ColorPalette.black,
+    tabIconDefault: ColorPalette.neutral400,
+    tabIconSelected: ColorPalette.white,
+    primary: ColorPalette.primary500,
+    secondary: ColorPalette.secondary500,
+    error: ColorPalette.red500,
+    grey1: ColorPalette.neutral900,
+    grey2: ColorPalette.neutral800,
+    grey3: ColorPalette.neutral700,
+    grey4: ColorPalette.neutral600,
+    grey5: ColorPalette.neutral500,
   },
 };

@@ -8,7 +8,7 @@ export default function EntryPoint() {
   useFocusEffect(
     useCallback(() => {
       if (user && user.isOnboarded) {
-        router.push("/(tabs)/budget");
+        router.push("/budget");
       } else {
         router.push("/onboarding");
       }

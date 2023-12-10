@@ -21,6 +21,13 @@ export function Text(props: TextProps) {
   return <DefaultText style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]} {...otherProps} />;
 }
 
+export function TitleText(props: TextProps) {
+  const { style, themeColor, ...otherProps } = props;
+  const { text } = useThemeColor();
+
+  return <DefaultText style={[{ color: text, fontSize: 17, fontFamily: "InterBold" }, style]} {...otherProps} />;
+}
+
 export function TextInput(props: TextInputProps) {
   const { style, themeColor, ...otherProps } = props;
   const { text } = useThemeColor();
