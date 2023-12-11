@@ -7,7 +7,7 @@ export default function SettingsButton({
   onPress,
   text,
 }: {
-  onPress: any;
+  onPress: () => void;
   text: string;
 }): React.JSX.Element {
   const { primary } = useThemeColor();
