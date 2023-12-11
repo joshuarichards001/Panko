@@ -23,4 +23,6 @@ function isAction(action: unknown): action is Action {
   return (action as Action).type !== undefined;
 }
 
-export const rootCustomMiddleware = [fixDisconnectedTransactionMiddleware];
+export const rootCustomMiddleware: Middleware[] = [
+  fixDisconnectedTransactionMiddleware,
+];

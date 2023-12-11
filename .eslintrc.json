@@ -15,6 +15,12 @@
     "plugins": [
         "react"
     ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "ignorePatterns": ["babel.config.js", "metro.config.js", "expo-env.d.ts"],
     "rules": {
     }
 }

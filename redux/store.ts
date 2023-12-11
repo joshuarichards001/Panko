@@ -10,6 +10,7 @@ import {
   persistReducer,
   persistStore,
 } from "redux-persist";
+import { rootCustomMiddleware } from "./middleware";
 import { accountReducer } from "./slices/accountSlice";
 import { budgetReducer } from "./slices/budgetSlice";
 import { categoryGroupReducer } from "./slices/categoryGroupSlice";
@@ -44,7 +45,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }), // .concat(rootCustomMiddleware),
+    }).concat(rootCustomMiddleware),
 });
 
 export const persistor = persistStore(store);

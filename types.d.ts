@@ -1,4 +1,4 @@
-type IUser = {
+interface IUser {
   id: string;
   name?: string;
   email?: string;
@@ -7,39 +7,39 @@ type IUser = {
   dailyNotificationTime?: string;
   theme: "system" | "light" | "dark";
   isProgressBarsHidden: boolean;
-};
+}
 
-type IBudget = {
+interface IBudget {
   id: string;
   name: string;
   defaultAccountId?: string;
-};
+}
 
-type IAccount = {
+interface IAccount {
   id: string;
   budgetId: string;
   name: string;
   balance: number;
   type: "cash" | "debt";
   isClosed: boolean;
-};
+}
 
-type IPayee = {
+interface IPayee {
   id: string;
   budgetId: string;
   accountId?: string;
   categoryId?: string;
   name: string;
-};
+}
 
-type ICategoryGroup = {
+interface ICategoryGroup {
   id: string;
   budgetId: string;
   name: string;
   isCollapsed: boolean;
-};
+}
 
-type ICategory = {
+interface ICategory {
   id: string;
   budgetId: string;
   categoryGroupId: string;
@@ -49,9 +49,9 @@ type ICategory = {
   type: ICategoryType;
   endDate?: string;
   goal?: number;
-};
+}
 
-type ITransaction = {
+interface ITransaction {
   id: string;
   budgetId: string;
   accountId: string;
@@ -61,8 +61,11 @@ type ITransaction = {
   type: "income" | "expense";
   amount: number;
   date: string;
-};
+}
 
 type ICategoryType = "week" | "fortnight" | "month" | "year" | "once" | "open";
 
-type IPickerItem = { label: string; value: string | number };
+interface IPickerItem {
+  label: string;
+  value: string | number;
+}
