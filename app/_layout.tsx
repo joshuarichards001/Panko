@@ -42,8 +42,11 @@ export default function RootLayout(): React.JSX.Element {
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="(addModals)"
+              options={{ presentation: "modal" }}
+            />
             <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           </Stack>
         </ThemeProvider>
       </PersistGate>
