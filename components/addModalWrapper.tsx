@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "space-between",
     padding: 20,
-    paddingBottom: 80,
+    paddingBottom: 60,
   },
 });

@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { generalStyles } from "../constants/styles";
 import { textStyles } from "../constants/textStyles";
+import { capitalize } from "../functions/helper";
 import { Text, TextInput, useThemeColor } from "./themed";
 
-interface IProps {
+interface IContainerProps {
   children: React.ReactNode;
 }
 
@@ -15,7 +16,18 @@ interface IInputProps {
   maxLength?: number;
 }
 
-const SettingGroupContainer = ({ children }: IProps): JSX.Element => {
+interface IButtonProps {
+  children: React.ReactNode;
+  onPress: () => void;
+}
+
+interface ISegmentProps {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  options: string[];
+}
+
+const SettingsGroupContainer = ({ children }: IContainerProps): JSX.Element => {
   const { background } = useThemeColor();
 
   return (
@@ -31,7 +43,7 @@ const SettingGroupContainer = ({ children }: IProps): JSX.Element => {
   );
 };
 
-const SettingContainer = ({ children }: IProps): JSX.Element => {
+const SettingsContainer = ({ children }: IContainerProps): JSX.Element => {
   const { grey2 } = useThemeColor();
 
   return (
@@ -46,7 +58,7 @@ const SettingContainer = ({ children }: IProps): JSX.Element => {
   );
 };
 
-const SettingTitle = ({ children }: IProps): JSX.Element => {
+const SettingsTitle = ({ children }: IContainerProps): JSX.Element => {
   const { grey4 } = useThemeColor();
 
   return (
@@ -56,7 +68,7 @@ const SettingTitle = ({ children }: IProps): JSX.Element => {
   );
 };
 
-const SettingInput = ({
+const SettingsInput = ({
   value,
   setValue,
   placeholder,
@@ -77,7 +89,7 @@ const SettingInput = ({
   );
 };
 
-const SettingDollarInput = ({ value, setValue }: IInputProps): JSX.Element => {
+const SettingsDollarInput = ({ value, setValue }: IInputProps): JSX.Element => {
   const { grey3, text } = useThemeColor();
 
   return (
@@ -97,29 +109,67 @@ const SettingDollarInput = ({ value, setValue }: IInputProps): JSX.Element => {
   );
 };
 
-const SettingButton = ({ children }: IProps): JSX.Element => {
+const SettingsButton = ({ children, onPress }: IButtonProps): JSX.Element => {
   const { primary } = useThemeColor();
 
   return (
-    <View
+    <TouchableOpacity
       style={[
         styles.settingsButton,
         generalStyles.boxShadow,
         { backgroundColor: primary },
       ]}
+      onPress={onPress}
     >
       <Text style={textStyles.m}>{children}</Text>
+    </TouchableOpacity>
+  );
+};
+
+const SettingsSegmentedControl = ({
+  value,
+  setValue,
+  options,
+}: ISegmentProps): JSX.Element => {
+  const { primary, background } = useThemeColor();
+
+  return (
+    <View
+      style={[
+        styles.settingsSegmentedControl,
+        generalStyles.boxShadow,
+        { backgroundColor: background },
+      ]}
+    >
+      {options.map((option) => (
+        <TouchableOpacity
+          key={option}
+          style={[
+            styles.settingsSegmentedControlButton,
+            {
+              backgroundColor: option === value ? primary : "transparent",
+              width: `${100 / options.length}%`,
+            },
+          ]}
+          onPress={() => {
+            setValue(option);
+          }}
+        >
+          <Text>{capitalize(option)}</Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
 
 export {
-  SettingButton,
-  SettingContainer,
-  SettingDollarInput,
-  SettingGroupContainer,
-  SettingInput,
-  SettingTitle,
+  SettingsButton,
+  SettingsContainer,
+  SettingsDollarInput,
+  SettingsGroupContainer,
+  SettingsInput,
+  SettingsSegmentedControl,
+  SettingsTitle,
 };
 
 const styles = StyleSheet.create({
@@ -140,6 +190,19 @@ const styles = StyleSheet.create({
   settingsButton: {
     padding: 14,
     borderRadius: 999,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  settingsSegmentedControl: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
+    borderRadius: 14,
+    padding: 8,
+  },
+  settingsSegmentedControlButton: {
+    padding: 6,
+    borderRadius: 10,
     alignItems: "center",
   },
 });

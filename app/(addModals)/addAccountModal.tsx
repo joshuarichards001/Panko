@@ -1,13 +1,15 @@
 import { useGlobalSearchParams } from "expo-router";
 import React, { useState } from "react";
+import { View } from "react-native";
 import AddModalWrapper from "../../components/addModalWrapper";
 import {
-  SettingButton,
-  SettingContainer,
-  SettingDollarInput,
-  SettingGroupContainer,
-  SettingInput,
-  SettingTitle,
+  SettingsButton,
+  SettingsContainer,
+  SettingsDollarInput,
+  SettingsGroupContainer,
+  SettingsInput,
+  SettingsSegmentedControl,
+  SettingsTitle,
 } from "../../components/settingsComponents";
 import { useAppSelector } from "../../redux/hooks";
 import { closeAccount } from "../../redux/slices/accountSlice";
@@ -18,8 +20,16 @@ export default function AddAccountModal(): JSX.Element {
     state.accounts.find((a) => a.id === accountId),
   );
 
+  const [type, setType] = useState<string>(account?.type ?? "cash");
   const [name, setName] = useState(account?.name ?? "");
   const [balance, setBalance] = useState(account?.balance.toString() ?? "");
+
+  const addAccount = (): boolean => {
+    if (name === "" || balance === "") {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <AddModalWrapper
@@ -27,22 +37,29 @@ export default function AddAccountModal(): JSX.Element {
       objectName="Account"
       deleteAction={closeAccount}
     >
-      <SettingGroupContainer>
-        <SettingContainer>
-          <SettingTitle>Name</SettingTitle>
-          <SettingInput
-            value={name}
-            setValue={setName}
-            placeholder="Checking..."
-            maxLength={20}
-          />
-        </SettingContainer>
-        <SettingContainer>
-          <SettingTitle>Balance</SettingTitle>
-          <SettingDollarInput value={balance} setValue={setBalance} />
-        </SettingContainer>
-      </SettingGroupContainer>
-      <SettingButton>Add Account</SettingButton>
+      <View>
+        <SettingsSegmentedControl
+          value={type}
+          setValue={setType}
+          options={["cash", "debt"]}
+        />
+        <SettingsGroupContainer>
+          <SettingsContainer>
+            <SettingsTitle>Name</SettingsTitle>
+            <SettingsInput
+              value={name}
+              setValue={setName}
+              placeholder="Checking..."
+              maxLength={20}
+            />
+          </SettingsContainer>
+          <SettingsContainer>
+            <SettingsTitle>Balance</SettingsTitle>
+            <SettingsDollarInput value={balance} setValue={setBalance} />
+          </SettingsContainer>
+        </SettingsGroupContainer>
+      </View>
+      <SettingsButton onPress={addAccount}>Add Account</SettingsButton>
     </AddModalWrapper>
   );
 }

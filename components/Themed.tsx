@@ -18,7 +18,7 @@ export function Text(props: DefaultText["props"]): React.JSX.Element {
 
   return (
     <DefaultText
-      style={[{ color: text }, textStyles.l, style]}
+      style={[{ color: text }, textStyles.m, style]}
       {...otherProps}
     />
   );
@@ -30,7 +30,7 @@ export function TitleText(props: DefaultText["props"]): React.JSX.Element {
 
   return (
     <DefaultText
-      style={[{ color: text }, textStyles.xxl, style]}
+      style={[{ color: text }, textStyles.xl, style]}
       {...otherProps}
     />
   );
@@ -42,7 +42,7 @@ export function TextInput(props: DefaultTextInput["props"]): React.JSX.Element {
 
   return (
     <DefaultTextInput
-      style={[{ color: text }, textStyles.l, style]}
+      style={[{ color: text }, textStyles.m, style]}
       {...otherProps}
     />
   );
