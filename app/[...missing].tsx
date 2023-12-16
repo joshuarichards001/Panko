@@ -1,7 +1,7 @@
 import { Link, Stack } from "expo-router";
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Text, View } from "../components/themed";
+import { StyleSheet, View } from "react-native";
+import { Text } from "../components/themed";
 
 export default function NotFoundScreen(): React.JSX.Element {
   return (

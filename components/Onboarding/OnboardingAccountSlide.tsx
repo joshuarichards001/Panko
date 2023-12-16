@@ -1,8 +1,8 @@
 import React from "react";
-import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { onboardingStyles } from "../../constants/styles";
 import SettingsButton from "../settingsButton";
-import { Text, TitleText, View } from "../themed";
+import { Text, TitleText } from "../themed";
 
 interface Props {
   completeOnboarding: () => void;

@@ -2,7 +2,6 @@ import React from "react";
 import {
   Text as DefaultText,
   TextInput as DefaultTextInput,
-  View as DefaultView,
   useColorScheme,
 } from "react-native";
 import { colors, type ITheme } from "../constants/colors";
@@ -17,7 +16,6 @@ export function useThemeColor(): ITheme {
 }
 
 export type TextProps = ThemeProps & DefaultText["props"];
-export type ViewProps = ThemeProps & DefaultView["props"];
 export type TextInputProps = ThemeProps & DefaultTextInput["props"];
 
 export function Text(props: TextProps): React.JSX.Element {
@@ -51,18 +49,6 @@ export function TextInput(props: TextInputProps): React.JSX.Element {
   return (
     <DefaultTextInput
       style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]}
-      {...otherProps}
-    />
-  );
-}
-
-export function View(props: ViewProps): React.JSX.Element {
-  const { style, themeColor, ...otherProps } = props;
-  const { background } = useThemeColor();
-
-  return (
-    <DefaultView
-      style={[{ backgroundColor: background }, style]}
       {...otherProps}
     />
   );

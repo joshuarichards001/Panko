@@ -44,7 +44,7 @@ export default function RootLayout(): React.JSX.Element {
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen
               name="(addModals)"
-              options={{ presentation: "modal" }}
+              options={{ presentation: "modal", headerShown: false }}
             />
             <Stack.Screen name="onboarding" options={{ headerShown: false }} />
           </Stack>

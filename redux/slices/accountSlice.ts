@@ -15,8 +15,16 @@ const accountSlice = createSlice({
         account.id === action.payload.id ? action.payload : account,
       );
     },
+    closeAccount(state, action: PayloadAction<string>) {
+      return state.map((account) =>
+        account.id === action.payload
+          ? { ...account, isClosed: true }
+          : account,
+      );
+    },
   },
 });
 
-export const { addAccount, setAccounts, updateAccount } = accountSlice.actions;
+export const { addAccount, setAccounts, updateAccount, closeAccount } =
+  accountSlice.actions;
 export const accountReducer = accountSlice.reducer;

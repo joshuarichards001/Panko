@@ -1,12 +1,23 @@
+import { useGlobalSearchParams } from "expo-router";
 import React from "react";
-import { Text, View } from "../../components/themed";
-import { StatusBar } from "expo-status-bar";
+import AddModalWrapper from "../../components/addModalWrapper";
+import { Text } from "../../components/themed";
+import { useAppSelector } from "../../redux/hooks";
+import { deletePayee } from "../../redux/slices/payeeSlice";
 
 export default function AddPayeeModal(): JSX.Element {
+  const { payeeId } = useGlobalSearchParams<{ payeeId?: string }>();
+  const payee = useAppSelector((state) =>
+    state.payees.find((p) => p.id === payeeId),
+  );
+
   return (
-    <View>
+    <AddModalWrapper
+      object={payee}
+      objectName="Payee"
+      deleteAction={deletePayee}
+    >
       <Text>payee</Text>
-      <StatusBar style="light" />
-    </View>
+    </AddModalWrapper>
   );
 }

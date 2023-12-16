@@ -1,7 +1,8 @@
 import React from "react";
 import { onboardingStyles } from "../../constants/styles";
 import SettingsButton from "../settingsButton";
-import { Text, TitleText, View } from "../themed";
+import { Text, TitleText } from "../themed";
+import { View } from "react-native";
 
 interface Props {
   handlePageTurn: (direction: "backward" | "forward") => void;

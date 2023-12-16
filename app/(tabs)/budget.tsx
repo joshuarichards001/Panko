@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { Text, View } from "../../components/themed";
+import { TouchableOpacity, View } from "react-native";
+import { Text } from "../../components/themed";
 
 export default function Budget(): React.JSX.Element {
   return (
