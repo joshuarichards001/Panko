@@ -1,8 +1,14 @@
 import { useGlobalSearchParams } from "expo-router";
 import React, { useState } from "react";
-import { View } from "react-native";
 import AddModalWrapper from "../../components/addModalWrapper";
-import { Text, TextInput, useThemeColor } from "../../components/themed";
+import {
+  SettingButton,
+  SettingContainer,
+  SettingDollarInput,
+  SettingGroupContainer,
+  SettingInput,
+  SettingTitle,
+} from "../../components/settingsComponents";
 import { useAppSelector } from "../../redux/hooks";
 import { closeAccount } from "../../redux/slices/accountSlice";
 
@@ -11,7 +17,6 @@ export default function AddAccountModal(): JSX.Element {
   const account = useAppSelector((state) =>
     state.accounts.find((a) => a.id === accountId),
   );
-  const { grey3, text } = useThemeColor();
 
   const [name, setName] = useState(account?.name ?? "");
   const [balance, setBalance] = useState(account?.balance.toString() ?? "");
@@ -22,30 +27,22 @@ export default function AddAccountModal(): JSX.Element {
       objectName="Account"
       deleteAction={closeAccount}
     >
-      <Text>Name</Text>
-      <TextInput
-        placeholderTextColor={grey3}
-        value={name}
-        onChangeText={(text: string) => {
-          setName(text);
-        }}
-        placeholder="Checking..."
-        maxLength={20}
-      />
-      <Text>Balance</Text>
-      <View style={{ flexDirection: "row" }}>
-        <Text style={{ color: balance === "" ? grey3 : text }}>$</Text>
-        <TextInput
-          placeholderTextColor={grey3}
-          value={balance}
-          onChangeText={(text: string) => {
-            setBalance(text);
-          }}
-          placeholder="0.00"
-          keyboardType="decimal-pad"
-          maxLength={10}
-        />
-      </View>
+      <SettingGroupContainer>
+        <SettingContainer>
+          <SettingTitle>Name</SettingTitle>
+          <SettingInput
+            value={name}
+            setValue={setName}
+            placeholder="Checking..."
+            maxLength={20}
+          />
+        </SettingContainer>
+        <SettingContainer>
+          <SettingTitle>Balance</SettingTitle>
+          <SettingDollarInput value={balance} setValue={setBalance} />
+        </SettingContainer>
+      </SettingGroupContainer>
+      <SettingButton>Add Account</SettingButton>
     </AddModalWrapper>
   );
 }

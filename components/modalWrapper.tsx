@@ -1,26 +1,36 @@
+import { Stack, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { useThemeColor } from "./themed";
+import {
+  TouchableOpacity,
+  View,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native";
+import { textStyles } from "../constants/textStyles";
+import { Text, useThemeColor } from "./themed";
 
 interface IProps {
   children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
 }
 
-export default function ModalWrapper({ children }: IProps): JSX.Element {
-  const { grey1 } = useThemeColor();
+export default function ModalWrapper({ children, style }: IProps): JSX.Element {
+  const { grey1, text } = useThemeColor();
 
   return (
-    <View style={[styles.container, { backgroundColor: grey1 }]}>
+    <View style={[style, { backgroundColor: grey1 }]}>
       <StatusBar style="light" />
+      <Stack.Screen
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity onPress={router.back}>
+              <Text style={[textStyles.m, { color: text }]}>Cancel</Text>
+            </TouchableOpacity>
+          ),
+        }}
+      />
       {children}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-});

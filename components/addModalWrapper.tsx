@@ -1,7 +1,7 @@
 import { type ActionCreator, type PayloadAction } from "@reduxjs/toolkit";
 import { Stack, router } from "expo-router";
 import React from "react";
-import { Alert, TouchableOpacity } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useAppDispatch } from "../redux/hooks";
 import ModalWrapper from "./modalWrapper";
 import { Text, useThemeColor } from "./themed";
@@ -58,7 +58,16 @@ export default function AddModalWrapper({
             ),
         }}
       />
-      {children}
+      <View style={styles.container}>{children}</View>
     </ModalWrapper>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+    justifyContent: "space-between",
+    padding: 20,
+    paddingBottom: 80,
+  },
+});

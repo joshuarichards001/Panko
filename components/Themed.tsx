@@ -5,50 +5,44 @@ import {
   useColorScheme,
 } from "react-native";
 import { colors, type ITheme } from "../constants/colors";
-
-interface ThemeProps {
-  themeColor?: keyof ITheme;
-}
+import { textStyles } from "../constants/textStyles";
 
 export function useThemeColor(): ITheme {
   const theme = useColorScheme() ?? "light";
   return colors[theme];
 }
 
-export type TextProps = ThemeProps & DefaultText["props"];
-export type TextInputProps = ThemeProps & DefaultTextInput["props"];
-
-export function Text(props: TextProps): React.JSX.Element {
-  const { style, themeColor, ...otherProps } = props;
+export function Text(props: DefaultText["props"]): React.JSX.Element {
+  const { style, ...otherProps } = props;
   const { text } = useThemeColor();
 
   return (
     <DefaultText
-      style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]}
+      style={[{ color: text }, textStyles.l, style]}
       {...otherProps}
     />
   );
 }
 
-export function TitleText(props: TextProps): React.JSX.Element {
-  const { style, themeColor, ...otherProps } = props;
+export function TitleText(props: DefaultText["props"]): React.JSX.Element {
+  const { style, ...otherProps } = props;
   const { text } = useThemeColor();
 
   return (
     <DefaultText
-      style={[{ color: text, fontSize: 17, fontFamily: "InterBold" }, style]}
+      style={[{ color: text }, textStyles.xxl, style]}
       {...otherProps}
     />
   );
 }
 
-export function TextInput(props: TextInputProps): React.JSX.Element {
-  const { style, themeColor, ...otherProps } = props;
+export function TextInput(props: DefaultTextInput["props"]): React.JSX.Element {
+  const { style, ...otherProps } = props;
   const { text } = useThemeColor();
 
   return (
     <DefaultTextInput
-      style={[{ color: text, fontSize: 17, fontFamily: "InterRegular" }, style]}
+      style={[{ color: text }, textStyles.l, style]}
       {...otherProps}
     />
   );
