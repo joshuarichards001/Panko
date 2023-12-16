@@ -14,6 +14,7 @@ interface IInputProps {
   setValue: React.Dispatch<React.SetStateAction<string>>;
   placeholder?: string;
   maxLength?: number;
+  isNumber?: boolean;
 }
 
 interface IButtonProps {
@@ -73,18 +74,21 @@ const SettingsInput = ({
   setValue,
   placeholder,
   maxLength,
+  isNumber,
 }: IInputProps): JSX.Element => {
   const { grey3 } = useThemeColor();
 
   return (
     <TextInput
       value={value}
+      style={styles.settingsInput}
       onChangeText={(text: string) => {
         setValue(text);
       }}
       placeholder={placeholder}
       maxLength={maxLength}
       placeholderTextColor={grey3}
+      keyboardType={isNumber === true ? "decimal-pad" : "default"}
     />
   );
 };
@@ -95,15 +99,12 @@ const SettingsDollarInput = ({ value, setValue }: IInputProps): JSX.Element => {
   return (
     <View style={styles.dollarInputContainer}>
       <Text style={{ color: value === "" ? grey3 : text }}>$</Text>
-      <TextInput
-        placeholderTextColor={grey3}
+      <SettingsInput
         value={value}
-        onChangeText={(text: string) => {
-          setValue(text);
-        }}
+        setValue={setValue}
         placeholder="0.00"
-        keyboardType="decimal-pad"
         maxLength={10}
+        isNumber={true}
       />
     </View>
   );
@@ -186,6 +187,9 @@ const styles = StyleSheet.create({
   },
   settingsTitle: {
     marginBottom: 5,
+  },
+  settingsInput: {
+    width: "100%",
   },
   settingsButton: {
     padding: 14,
