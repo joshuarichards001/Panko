@@ -1,15 +1,15 @@
 import { Platform, StyleSheet } from "react-native";
-import { height, width } from "./constants";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "./constants";
 
 export const onboardingStyles = StyleSheet.create({
   container: {
-    width,
+    width: SCREEN_WIDTH,
     padding: 30,
     paddingBottom: 50,
     justifyContent: "space-between",
   },
   contentContainer: {
-    paddingTop: height * 0.1,
+    paddingTop: SCREEN_HEIGHT * 0.1,
   },
   title: {
     fontSize: 50,

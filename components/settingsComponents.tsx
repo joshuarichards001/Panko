@@ -1,6 +1,8 @@
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import RNPickerSelect from "react-native-picker-select";
 import { generalStyles } from "../constants/styles";
 import { textStyles } from "../constants/textStyles";
 import { capitalize } from "../functions/helper";
@@ -33,6 +35,12 @@ interface ISegmentProps {
 interface ISearchProps {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+
+interface IPickerProps {
+  value: ICategoryType | "";
+  setValue: React.Dispatch<React.SetStateAction<ICategoryType | "">>;
+  items: IPickerItem[];
 }
 
 const SettingsGroupContainer = ({ children }: IContainerProps): JSX.Element => {
@@ -116,7 +124,7 @@ const SettingsDollarInput = ({ value, setValue }: IInputProps): JSX.Element => {
       <SettingsInput
         value={value}
         setValue={setValue}
-        placeholder="0.00"
+        placeholder="0.00..."
         maxLength={8}
         isNumber={true}
       />
@@ -214,13 +222,78 @@ const SettingsSearchBar = ({
   );
 };
 
+const SettingsPicker = ({
+  value,
+  setValue,
+  items,
+}: IPickerProps): JSX.Element => {
+  const { grey3, text } = useThemeColor();
+
+  return (
+    <RNPickerSelect
+      value={value}
+      onValueChange={(v: ICategoryType) => {
+        setValue(v);
+      }}
+      placeholder={{ label: "Select...", value: null }}
+      items={items}
+      style={{
+        inputIOS: { ...textStyles.m, color: text },
+        inputAndroid: { ...textStyles.m, color: text },
+        placeholder: { color: grey3 },
+      }}
+    />
+  );
+};
+
+const SettingsDatePicker = ({
+  date,
+  setDate,
+}: {
+  date: string;
+  setDate: React.Dispatch<React.SetStateAction<string>>;
+}): JSX.Element => {
+  // const colorScheme = useColorScheme();
+
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
+
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={() => {
+          setDatePickerOpen(true);
+        }}
+      >
+        <Text>{new Date(date).toDateString().slice(0, 10)}</Text>
+      </TouchableOpacity>
+      <DateTimePickerModal
+        isVisible={datePickerOpen}
+        mode="date"
+        display="inline"
+        onConfirm={(d) => {
+          setDatePickerOpen(false);
+          setDate(d.toISOString());
+        }}
+        onCancel={() => {
+          setDatePickerOpen(false);
+        }}
+        date={new Date(date)}
+        maximumDate={new Date("2100-01-01")}
+        minimumDate={new Date("2000-01-01")}
+      />
+    </View>
+  );
+};
+
 export {
   SettingsAddAnotherButton,
   SettingsButton,
   SettingsContainer,
+  SettingsDatePicker,
   SettingsDollarInput,
   SettingsGroupContainer,
   SettingsInput,
+  SettingsPicker,
   SettingsSearchBar,
   SettingsSegmentedControl,
   SettingsTitle,

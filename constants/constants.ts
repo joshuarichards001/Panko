@@ -1,20 +1,24 @@
 import { Dimensions } from "react-native";
 
-export const { height, width } = Dimensions.get("window");
+export const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } =
+  Dimensions.get("window");
 
-export const categoryTypeDropdownItems: IPickerItem[] = [
+export const CATEGORY_TYPE_DROPDOWN_ITEMS: IPickerItem[] = [
   { label: "Weekly", value: "week" },
   { label: "Fortnightly", value: "fortnight" },
   { label: "Monthly", value: "month" },
+  { label: "Yearly", value: "year" },
+  { label: "Once", value: "once" },
+  { label: "Open", value: "open" },
 ];
 
-export const themeDropdownItemList: IPickerItem[] = [
+export const THEME_DROPDOWN_ITEMS: IPickerItem[] = [
   { label: "Light", value: "light" },
   { label: "Dark", value: "dark" },
   { label: "System", value: "system" },
 ];
 
-export const daysOfWeek = [
+export const DAYS_OF_WEEK = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -24,7 +28,7 @@ export const daysOfWeek = [
   "Saturday",
 ];
 
-export const daysOfMonth = [
+export const DAYS_OF_MONTH = [
   "1st",
   "2nd",
   "3rd",

@@ -1,13 +1,13 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { Animated, StyleSheet, type ScrollView, View } from "react-native";
+import { Animated, StyleSheet, View, type ScrollView } from "react-native";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import OnboardingAccountSlide from "../components/onboarding/onboardingAccountSlide";
 import OnboardingCategorySlide from "../components/onboarding/onboardingCategorySlide";
 import OnboardingWelcomeSlide from "../components/onboarding/onboardingWelcomeSlide";
 import { useThemeColor } from "../components/themed";
-import { width } from "../constants/constants";
+import { SCREEN_WIDTH } from "../constants/constants";
 import { useAppDispatch } from "../redux/hooks";
 import { setAccounts } from "../redux/slices/accountSlice";
 import { setBudgets } from "../redux/slices/budgetSlice";
@@ -29,7 +29,7 @@ export default function Onboarding(): React.JSX.Element {
     const nextPage = currentPage + increment;
 
     setCurrentPage(nextPage);
-    scrollRef.current?.scrollTo({ x: nextPage * width, animated: true });
+    scrollRef.current?.scrollTo({ x: nextPage * SCREEN_WIDTH, animated: true });
   };
 
   const getDotBackgroundColor = (index: number): string => {
@@ -81,7 +81,7 @@ export default function Onboarding(): React.JSX.Element {
         scrollEnabled={false}
         pagingEnabled
         decelerationRate={0}
-        snapToInterval={width}
+        snapToInterval={SCREEN_WIDTH}
         showsHorizontalScrollIndicator={false}
         ref={scrollRef}
       >

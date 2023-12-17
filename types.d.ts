@@ -47,7 +47,7 @@ interface ICategory {
   allocated: number;
   spent: number;
   type: ICategoryType;
-  endDate?: string;
+  date?: string; // could either be start date with week/fortnight/month/year, end date for once, or null for open
   goal?: number;
 }
 
