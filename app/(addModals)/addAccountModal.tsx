@@ -1,8 +1,9 @@
-import { useGlobalSearchParams } from "expo-router";
+import { router, useGlobalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { View } from "react-native";
 import AddModalWrapper from "../../components/addModalWrapper";
 import {
+  SettingsAddAnotherButton,
   SettingsButton,
   SettingsContainer,
   SettingsDollarInput,
@@ -10,6 +11,7 @@ import {
   SettingsInput,
   SettingsSegmentedControl,
   SettingsTitle,
+  sharedStyles,
 } from "../../components/settingsComponents";
 import { useAppSelector } from "../../redux/hooks";
 import { closeAccount } from "../../redux/slices/accountSlice";
@@ -24,10 +26,19 @@ export default function AddAccountModal(): JSX.Element {
   const [name, setName] = useState(account?.name ?? "");
   const [balance, setBalance] = useState(account?.balance.toString() ?? "");
 
-  const addAccount = (): boolean => {
+  const addAccount = (addAnother: boolean): boolean => {
     if (name === "" || balance === "") {
       return false;
     }
+
+    if (addAnother) {
+      setType("cash");
+      setName("");
+      setBalance("");
+    } else {
+      router.back();
+    }
+
     return true;
   };
 
@@ -43,6 +54,7 @@ export default function AddAccountModal(): JSX.Element {
           setValue={setType}
           options={["cash", "debt"]}
         />
+
         <SettingsGroupContainer>
           <SettingsContainer>
             <SettingsTitle>Name</SettingsTitle>
@@ -53,13 +65,21 @@ export default function AddAccountModal(): JSX.Element {
               maxLength={20}
             />
           </SettingsContainer>
-          <SettingsContainer>
+          <SettingsContainer isLast={true}>
             <SettingsTitle>Balance</SettingsTitle>
             <SettingsDollarInput value={balance} setValue={setBalance} />
           </SettingsContainer>
         </SettingsGroupContainer>
       </View>
-      <SettingsButton onPress={addAccount}>Add Account</SettingsButton>
+
+      <View style={sharedStyles.settingsAddButtonGroup}>
+        <SettingsAddAnotherButton onPress={() => addAccount(true)}>
+          Save and Add Another
+        </SettingsAddAnotherButton>
+        <SettingsButton onPress={() => addAccount(false)}>
+          Add Account
+        </SettingsButton>
+      </View>
     </AddModalWrapper>
   );
 }

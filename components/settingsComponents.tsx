@@ -1,3 +1,4 @@
+import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { generalStyles } from "../constants/styles";
@@ -7,6 +8,7 @@ import { Text, TextInput, useThemeColor } from "./themed";
 
 interface IContainerProps {
   children: React.ReactNode;
+  isLast?: boolean;
 }
 
 interface IInputProps {
@@ -28,6 +30,11 @@ interface ISegmentProps {
   options: string[];
 }
 
+interface ISearchProps {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+
 const SettingsGroupContainer = ({ children }: IContainerProps): JSX.Element => {
   const { background } = useThemeColor();
 
@@ -44,14 +51,21 @@ const SettingsGroupContainer = ({ children }: IContainerProps): JSX.Element => {
   );
 };
 
-const SettingsContainer = ({ children }: IContainerProps): JSX.Element => {
+const SettingsContainer = ({
+  children,
+  isLast,
+}: IContainerProps): JSX.Element => {
   const { grey2 } = useThemeColor();
 
   return (
     <View
       style={[
         styles.settingsContainer,
-        { borderBottomColor: grey2, borderBottomWidth: 1 },
+        {
+          borderBottomColor:
+            isLast !== undefined && isLast ? "transparent" : grey2,
+          borderBottomWidth: 1,
+        },
       ]}
     >
       {children}
@@ -103,7 +117,7 @@ const SettingsDollarInput = ({ value, setValue }: IInputProps): JSX.Element => {
         value={value}
         setValue={setValue}
         placeholder="0.00"
-        maxLength={10}
+        maxLength={8}
         isNumber={true}
       />
     </View>
@@ -123,6 +137,27 @@ const SettingsButton = ({ children, onPress }: IButtonProps): JSX.Element => {
       onPress={onPress}
     >
       <Text style={textStyles.m}>{children}</Text>
+    </TouchableOpacity>
+  );
+};
+
+const SettingsAddAnotherButton = ({
+  children,
+  onPress,
+}: IButtonProps): JSX.Element => {
+  const { grey4 } = useThemeColor();
+
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Text
+        style={[
+          textStyles.m,
+          styles.settingsAddAnotherButton,
+          { color: grey4 },
+        ]}
+      >
+        {children}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -163,12 +198,30 @@ const SettingsSegmentedControl = ({
   );
 };
 
+const SettingsSearchBar = ({
+  search,
+  setSearch,
+}: ISearchProps): JSX.Element => {
+  const { grey1 } = useThemeColor();
+
+  return (
+    <BottomSheetTextInput
+      style={[styles.settingsSearchBar, { backgroundColor: grey1 }]}
+      value={search}
+      onChangeText={setSearch}
+      placeholder="Search..."
+    />
+  );
+};
+
 export {
+  SettingsAddAnotherButton,
   SettingsButton,
   SettingsContainer,
   SettingsDollarInput,
   SettingsGroupContainer,
   SettingsInput,
+  SettingsSearchBar,
   SettingsSegmentedControl,
   SettingsTitle,
 };
@@ -179,7 +232,6 @@ const styles = StyleSheet.create({
   },
   settingsGroupContainer: {
     borderRadius: 14,
-    overflow: "hidden",
     marginBottom: 20,
   },
   settingsContainer: {
@@ -196,6 +248,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     alignItems: "center",
     marginBottom: 20,
+    width: "100%",
+  },
+  settingsAddAnotherButton: {
+    paddingBottom: 20,
   },
   settingsSegmentedControl: {
     flexDirection: "row",
@@ -207,6 +263,20 @@ const styles = StyleSheet.create({
   settingsSegmentedControlButton: {
     padding: 6,
     borderRadius: 10,
+    alignItems: "center",
+  },
+  settingsSearchBar: {
+    marginTop: 8,
+    marginBottom: 10,
+    borderRadius: 10,
+    fontSize: 16,
+    lineHeight: 20,
+    padding: 8,
+  },
+});
+
+export const sharedStyles = StyleSheet.create({
+  settingsAddButtonGroup: {
     alignItems: "center",
   },
 });

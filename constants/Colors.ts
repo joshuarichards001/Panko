@@ -70,7 +70,7 @@ export const colors: {
   light: {
     text: colorPalette.black,
     background: colorPalette.white,
-    tabIconDefault: colorPalette.neutral300,
+    tabIconDefault: colorPalette.neutral400,
     tabIconSelected: colorPalette.primary500,
     primary: colorPalette.primary500,
     secondary: colorPalette.secondary500,

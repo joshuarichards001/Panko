@@ -26,10 +26,13 @@ export const generalStyles = StyleSheet.create({
   boxShadow: {
     ...Platform.select({
       ios: {
-        shadowColor: "grey",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
       },
       android: {
         elevation: 5,

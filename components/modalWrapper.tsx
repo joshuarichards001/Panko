@@ -2,7 +2,9 @@ import { Stack, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
+  Keyboard,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
   type StyleProp,
   type ViewStyle,
@@ -30,7 +32,9 @@ export default function ModalWrapper({ children, style }: IProps): JSX.Element {
           ),
         }}
       />
-      {children}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>{children}</View>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
