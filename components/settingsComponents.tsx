@@ -38,9 +38,19 @@ interface ISearchProps {
 }
 
 interface IPickerProps {
-  value: ICategoryType | "";
-  setValue: React.Dispatch<React.SetStateAction<ICategoryType | "">>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setValue: React.Dispatch<React.SetStateAction<any>>;
   items: IPickerItem[];
+}
+
+interface IDatePickerProps {
+  date: number;
+  setDate: React.Dispatch<React.SetStateAction<number>>;
+  display?: "inline" | "spinner";
+  minimumDate?: Date;
+  maximumDate?: Date;
 }
 
 const SettingsGroupContainer = ({ children }: IContainerProps): JSX.Element => {
@@ -249,12 +259,10 @@ const SettingsPicker = ({
 const SettingsDatePicker = ({
   date,
   setDate,
-}: {
-  date: string;
-  setDate: React.Dispatch<React.SetStateAction<string>>;
-}): JSX.Element => {
-  // const colorScheme = useColorScheme();
-
+  display,
+  minimumDate,
+  maximumDate,
+}: IDatePickerProps): JSX.Element => {
   const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   return (
@@ -269,17 +277,17 @@ const SettingsDatePicker = ({
       <DateTimePickerModal
         isVisible={datePickerOpen}
         mode="date"
-        display="inline"
+        display={display ?? "inline"}
         onConfirm={(d) => {
           setDatePickerOpen(false);
-          setDate(d.toISOString());
+          setDate(d.getTime());
         }}
         onCancel={() => {
           setDatePickerOpen(false);
         }}
         date={new Date(date)}
-        maximumDate={new Date("2100-01-01")}
-        minimumDate={new Date("2000-01-01")}
+        minimumDate={minimumDate ?? new Date("2000-01-01")}
+        maximumDate={maximumDate ?? new Date("2100-01-01")}
       />
     </View>
   );

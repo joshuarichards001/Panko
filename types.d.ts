@@ -39,6 +39,15 @@ interface ICategoryGroup {
   isCollapsed: boolean;
 }
 
+/**
+ * This interface has a complex relationship between category type and date. It is used to represent a category.
+ * - If type is "week", date is the index of the start date day of the week (0 for Sunday, 1 for Monday, etc.).
+ * - If type is "fortnight", date is the timestamp of the first day the category happens (1703375366119).
+ * - If type is "month", date is the start date day of the month (1 for the first day, 2 for the second day, etc.).
+ * - If type is "year", date is a end date decimal where the whole number is the month and the decimal is the day (8.13 for August 13th).
+ * - If type is "once", date is the end date as a timestamp of the day the category ends (1703375366119).
+ * - If type is "open", date is undefined or 0.
+ */
 interface ICategory {
   id: string;
   budgetId: string;
@@ -47,7 +56,7 @@ interface ICategory {
   allocated: number;
   spent: number;
   type: ICategoryType;
-  date?: string; // could either be start date with week/fortnight/month/year, end date for once, or null for open
+  date?: number;
   goal?: number;
 }
 
