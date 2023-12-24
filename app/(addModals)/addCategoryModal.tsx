@@ -35,7 +35,9 @@ export default function AddCategoryModal(): JSX.Element {
   );
 
   const [name, setName] = useState(category?.name ?? "");
-  const [groupId, setGroupId] = useState(category?.categoryGroupId ?? "");
+  const [categoryGroupId, setCategoryGroupId] = useState(
+    category?.categoryGroupId ?? "",
+  );
   const [type, setType] = useState<ICategoryType | "">(category?.type ?? "");
   const [date, setDate] = useState(category?.date ?? 0);
   const [goal, setGoal] = useState(category?.goal?.toString() ?? "");
@@ -44,7 +46,7 @@ export default function AddCategoryModal(): JSX.Element {
     ["week", "fortnight", "month", "year", "once"].includes(t);
 
   const addCategoryToStore = (addAnother: boolean): boolean => {
-    if (name === "" || groupId === "" || type === "" || goal === "") {
+    if (name === "" || categoryGroupId === "" || type === "" || goal === "") {
       return false;
     }
 
@@ -52,7 +54,7 @@ export default function AddCategoryModal(): JSX.Element {
       id: category !== undefined ? category.id : uuidv4(),
       budgetId,
       name,
-      categoryGroupId: groupId,
+      categoryGroupId,
       type,
       date: isDateNecessary(type) ? date : undefined,
       goal: parseFloat(goal),
@@ -68,7 +70,7 @@ export default function AddCategoryModal(): JSX.Element {
 
     if (addAnother) {
       setName("");
-      setGroupId("");
+      setCategoryGroupId("");
       setType("");
       setDate(0);
       setGoal("");
@@ -99,8 +101,8 @@ export default function AddCategoryModal(): JSX.Element {
           <SettingsContainer>
             <SettingsTitle>Category Group</SettingsTitle>
             <CategoryGroupBottomSheet
-              categoryGroupId={groupId}
-              setCategoryGroupId={setGroupId}
+              categoryGroupId={categoryGroupId}
+              setCategoryGroupId={setCategoryGroupId}
             />
           </SettingsContainer>
           <SettingsContainer>
