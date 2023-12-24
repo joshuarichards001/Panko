@@ -26,9 +26,12 @@ interface IButtonProps {
   onPress: () => void;
 }
 
+// TODO: Address any types
 interface ISegmentProps {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setValue: React.Dispatch<React.SetStateAction<any>>;
   options: string[];
 }
 
@@ -37,6 +40,7 @@ interface ISearchProps {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
+// TODO: Address any types
 interface IPickerProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;

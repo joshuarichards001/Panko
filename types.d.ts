@@ -20,7 +20,7 @@ interface IAccount {
   budgetId: string;
   name: string;
   balance: number;
-  type: "cash" | "debt";
+  type: IAccountType;
   isClosed: boolean;
 }
 
@@ -73,6 +73,8 @@ interface ITransaction {
 }
 
 type ICategoryType = "week" | "fortnight" | "month" | "year" | "once" | "open";
+
+type IAccountType = "checking" | "saving" | "debt";
 
 interface IPickerItem {
   label: string;
