@@ -60,11 +60,11 @@ export default function AddAccountModal(): JSX.Element {
       isClosed: false,
     };
 
-    dispatch(
-      account !== undefined
-        ? updateAccount(newAccount)
-        : addAccount(newAccount),
-    );
+    if (account !== undefined) {
+      dispatch(updateAccount(newAccount));
+    } else {
+      dispatch(addAccount(newAccount));
+    }
 
     if (addAnother) {
       setType("checking");

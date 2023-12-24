@@ -62,11 +62,11 @@ export default function AddCategoryModal(): JSX.Element {
       spent: 0,
     };
 
-    dispatch(
-      category !== undefined
-        ? updateCategory(newCategory)
-        : addCategory(newCategory),
-    );
+    if (category !== undefined) {
+      dispatch(updateCategory(newCategory));
+    } else {
+      dispatch(addCategory(newCategory));
+    }
 
     if (addAnother) {
       setName("");
