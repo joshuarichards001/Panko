@@ -20,6 +20,11 @@ export default function CategoryDatePicker({
 }: Props): JSX.Element {
   const [items, setItems] = useState<IPickerItem[]>([]);
 
+  const tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+  const oneYearFromNow = new Date(
+    new Date().setFullYear(new Date().getFullYear() + 1),
+  );
+
   useEffect(() => {
     setDate(getDefaultCategoryDateInitialValue(categoryType));
     switch (categoryType) {
@@ -46,14 +51,19 @@ export default function CategoryDatePicker({
           date={date ?? new Date().getTime()}
           setDate={setDate}
           display="spinner"
-          maximumDate={
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-          }
-          minimumDate={new Date()}
+          maximumDate={oneYearFromNow}
+          minimumDate={tomorrow}
         />
       );
     } else if (categoryType === "once") {
-      return <SettingsDatePicker date={date} setDate={setDate} />;
+      return (
+        <SettingsDatePicker
+          date={date}
+          setDate={setDate}
+          display="spinner"
+          minimumDate={tomorrow}
+        />
+      );
     } else {
       return <></>;
     }

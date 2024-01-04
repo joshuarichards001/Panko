@@ -4,6 +4,9 @@ export const getDefaultCategoryDateInitialValue = (
   categoryType: ICategoryType,
 ): number => {
   const todayTimestamp = new Date(new Date().toDateString()).getTime();
+  const tomorrowTimestamp = new Date(
+    new Date().setDate(new Date().getDate() + 1),
+  ).getTime();
 
   switch (categoryType) {
     case "week":
@@ -13,10 +16,12 @@ export const getDefaultCategoryDateInitialValue = (
     case "month":
       return 1;
     case "year":
-      return todayTimestamp;
+      return tomorrowTimestamp;
     case "once":
-      return todayTimestamp;
-    case "open":
+      return tomorrowTimestamp;
+    case "open-goal":
+      return 0;
+    case "open-no-goal":
       return 0;
   }
 };

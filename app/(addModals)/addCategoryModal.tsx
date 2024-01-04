@@ -45,6 +45,16 @@ export default function AddCategoryModal(): JSX.Element {
   const isDateNecessary = (t: ICategoryType): boolean =>
     ["week", "fortnight", "month", "year", "once"].includes(t);
 
+  const getDateLabel = (t: ICategoryType): string => {
+    if (["week", "fortnight", "month"].includes(t)) {
+      return "Start Date";
+    } else if (["year", "once"].includes(t)) {
+      return "End Date";
+    } else {
+      return "";
+    }
+  };
+
   const addCategoryToStore = (addAnother: boolean): boolean => {
     if (name === "" || categoryGroupId === "" || type === "" || goal === "") {
       return false;
@@ -113,20 +123,26 @@ export default function AddCategoryModal(): JSX.Element {
               items={CATEGORY_TYPE_DROPDOWN_ITEMS}
             />
           </SettingsContainer>
-          {type !== "" && isDateNecessary(type) && (
-            <SettingsContainer>
-              <SettingsTitle>Date</SettingsTitle>
-              <CategoryDatePicker
-                date={date}
-                setDate={setDate}
-                categoryType={type}
-              />
-            </SettingsContainer>
+          {type !== "" && (
+            <>
+              {isDateNecessary(type) && (
+                <SettingsContainer>
+                  <SettingsTitle>{getDateLabel(type)}</SettingsTitle>
+                  <CategoryDatePicker
+                    date={date}
+                    setDate={setDate}
+                    categoryType={type}
+                  />
+                </SettingsContainer>
+              )}
+              {type !== "open-no-goal" && (
+                <SettingsContainer isLast={true}>
+                  <SettingsTitle>Allocation Goal</SettingsTitle>
+                  <SettingsDollarInput value={goal} setValue={setGoal} />
+                </SettingsContainer>
+              )}
+            </>
           )}
-          <SettingsContainer isLast={true}>
-            <SettingsTitle>Allocation Goal</SettingsTitle>
-            <SettingsDollarInput value={goal} setValue={setGoal} />
-          </SettingsContainer>
         </SettingsGroupContainer>
 
         <View style={sharedStyles.settingsAddButtonGroup}>

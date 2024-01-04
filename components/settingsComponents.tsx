@@ -276,7 +276,7 @@ const SettingsDatePicker = ({
           setDatePickerOpen(true);
         }}
       >
-        <Text>{new Date(date).toDateString().slice(0, 10)}</Text>
+        <Text>{new Date(date).toDateString()}</Text>
       </TouchableOpacity>
       <DateTimePickerModal
         isVisible={datePickerOpen}

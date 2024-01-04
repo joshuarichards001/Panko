@@ -72,7 +72,14 @@ interface ITransaction {
   date: string;
 }
 
-type ICategoryType = "week" | "fortnight" | "month" | "year" | "once" | "open";
+type ICategoryType =
+  | "week"
+  | "fortnight"
+  | "month"
+  | "year"
+  | "once"
+  | "open-goal"
+  | "open-no-goal";
 
 type IAccountType = "checking" | "saving" | "debt";
 

@@ -9,7 +9,8 @@ export const CATEGORY_TYPE_DROPDOWN_ITEMS: IPickerItem[] = [
   { label: "Monthly", value: "month" },
   { label: "Yearly", value: "year" },
   { label: "Once", value: "once" },
-  { label: "Open", value: "open" },
+  { label: "Open", value: "open-goal" },
+  { label: "Open (No Goal)", value: "open-no-goal" },
 ];
 
 export const THEME_DROPDOWN_ITEMS: IPickerItem[] = [
