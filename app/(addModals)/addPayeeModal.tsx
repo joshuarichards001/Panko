@@ -1,7 +1,7 @@
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useGlobalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import AddModalWrapper from "../../components/addModalWrapper";
 import AccountBottomSheet from "../../components/bottomSheets/accountBottomSheet";
 import CategoryBottomSheet from "../../components/bottomSheets/categoryBottomSheet";
 import {
@@ -11,6 +11,7 @@ import {
   SettingsInput,
   SettingsTitle,
 } from "../../components/settingsComponents";
+import AddModalWrapper from "../../components/wrappers/addModalWrapper";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addPayee,
@@ -58,35 +59,37 @@ export default function AddPayeeModal(): JSX.Element {
       objectName="Payee"
       deleteAction={deletePayee}
     >
-      <SettingsGroupContainer>
-        <SettingsContainer>
-          <SettingsTitle>Name</SettingsTitle>
-          <SettingsInput
-            value={name}
-            setValue={setName}
-            placeholder="Supermarket..."
-            maxLength={20}
-          />
-        </SettingsContainer>
-        <SettingsContainer>
-          <SettingsTitle>Account</SettingsTitle>
-          <AccountBottomSheet
-            accountId={accountId}
-            setAccountId={setAccountId}
-          />
-        </SettingsContainer>
-        <SettingsContainer>
-          <SettingsTitle>Category</SettingsTitle>
-          <CategoryBottomSheet
-            categoryId={categoryId}
-            setCategoryId={setCategoryId}
-          />
-        </SettingsContainer>
-      </SettingsGroupContainer>
+      <BottomSheetModalProvider>
+        <SettingsGroupContainer>
+          <SettingsContainer>
+            <SettingsTitle>Name</SettingsTitle>
+            <SettingsInput
+              value={name}
+              setValue={setName}
+              placeholder="Supermarket..."
+              maxLength={20}
+            />
+          </SettingsContainer>
+          <SettingsContainer>
+            <SettingsTitle>Account</SettingsTitle>
+            <AccountBottomSheet
+              accountId={accountId}
+              setAccountId={setAccountId}
+            />
+          </SettingsContainer>
+          <SettingsContainer>
+            <SettingsTitle>Category</SettingsTitle>
+            <CategoryBottomSheet
+              categoryId={categoryId}
+              setCategoryId={setCategoryId}
+            />
+          </SettingsContainer>
+        </SettingsGroupContainer>
 
-      <SettingsButton onPress={() => addPayeeToStore()}>
-        Add Account
-      </SettingsButton>
+        <SettingsButton onPress={() => addPayeeToStore()}>
+          Add Account
+        </SettingsButton>
+      </BottomSheetModalProvider>
     </AddModalWrapper>
   );
 }

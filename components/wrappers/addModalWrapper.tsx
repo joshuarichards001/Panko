@@ -2,9 +2,9 @@ import { type ActionCreator, type PayloadAction } from "@reduxjs/toolkit";
 import { Stack, router } from "expo-router";
 import React from "react";
 import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
+import { Text, useThemeColor } from "../themed";
 import ModalWrapper from "./modalWrapper";
-import { Text, useThemeColor } from "./themed";
 
 interface IProps {
   children: React.ReactNode;

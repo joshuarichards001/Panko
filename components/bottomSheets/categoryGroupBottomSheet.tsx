@@ -1,8 +1,7 @@
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import React, { useCallback, useMemo, useRef } from "react";
-import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+import { type BottomSheetModal } from "@gorhom/bottom-sheet";
+import React, { useRef } from "react";
+import { Alert, TouchableOpacity } from "react-native";
 import { v4 as uuidv4 } from "uuid";
-import { textStyles } from "../../constants/textStyles";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addCategoryGroup } from "../../redux/slices/categoryGroupSlice";
 import {
@@ -10,7 +9,8 @@ import {
   SettingsContainer,
   SettingsGroupContainer,
 } from "../settingsComponents";
-import { Text, useThemeColor } from "../themed";
+import { Text } from "../themed";
+import BottomSheetWrapper from "../wrappers/bottomSheetWrapper";
 
 interface IProps {
   categoryGroupId: string;
@@ -27,14 +27,7 @@ export default function CategoryGroupBottomSheet({
   const categoryGroups = useAppSelector((state) => state.categoryGroups);
   const categoryGroup = categoryGroups.find((cg) => cg.id === categoryGroupId);
 
-  const { grey3, text } = useThemeColor();
-
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ["50%"], []);
-
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
 
   // const [search, setSearch] = useState("");
 
@@ -78,55 +71,32 @@ export default function CategoryGroupBottomSheet({
   };
 
   return (
-    <View>
-      <TouchableOpacity onPress={handlePresentModalPress}>
-        <Text
-          style={[
-            textStyles.m,
-            { color: categoryGroup !== undefined ? text : grey3 },
-          ]}
-        >
-          {categoryGroup !== undefined ? categoryGroup.name : "Bills..."}
-        </Text>
-      </TouchableOpacity>
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        snapPoints={snapPoints}
-        keyboardBehavior="fillParent"
-      >
-        <View style={styles.modalContainer}>
-          {/* <SettingsSearchBar search={search} setSearch={setSearch} /> */}
-          <SettingsAddAnotherButton onPress={handleAddNewGroup}>
-            + Create New
-          </SettingsAddAnotherButton>
-          <SettingsGroupContainer>
-            {categoryGroups.map((cg, i) => (
-              <SettingsContainer
-                key={cg.id}
-                isLast={categoryGroups.length - 1 === i}
-              >
-                <TouchableOpacity
-                  onPress={() => {
-                    setCategoryGroupId(cg.id);
-                    bottomSheetModalRef.current?.dismiss();
-                  }}
-                >
-                  <Text>{cg.name}</Text>
-                </TouchableOpacity>
-              </SettingsContainer>
-            ))}
-          </SettingsGroupContainer>
-        </View>
-      </BottomSheetModal>
-    </View>
+    <BottomSheetWrapper
+      buttonText={categoryGroup?.name}
+      bottomSheetModalRef={bottomSheetModalRef}
+      buttonPlaceholder="Checking..."
+    >
+      {/* <SettingsSearchBar search={search} setSearch={setSearch} /> */}
+      <SettingsAddAnotherButton onPress={handleAddNewGroup}>
+        + Create New
+      </SettingsAddAnotherButton>
+      <SettingsGroupContainer>
+        {categoryGroups.map((cg, i) => (
+          <SettingsContainer
+            key={cg.id}
+            isLast={categoryGroups.length - 1 === i}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                setCategoryGroupId(cg.id);
+                bottomSheetModalRef.current?.dismiss();
+              }}
+            >
+              <Text>{cg.name}</Text>
+            </TouchableOpacity>
+          </SettingsContainer>
+        ))}
+      </SettingsGroupContainer>
+    </BottomSheetWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  modalContainer: {
-    padding: 14,
-    paddingTop: 0,
-    zIndex: 100,
-    backgroundColor: "white",
-  },
-});

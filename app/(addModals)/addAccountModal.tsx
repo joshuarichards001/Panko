@@ -2,7 +2,6 @@ import { router, useGlobalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { v4 as uuidv4 } from "uuid";
-import AddModalWrapper from "../../components/addModalWrapper";
 import {
   SettingsAddAnotherButton,
   SettingsButton,
@@ -15,6 +14,7 @@ import {
   sharedStyles,
 } from "../../components/settingsComponents";
 import { Text, useThemeColor } from "../../components/themed";
+import AddModalWrapper from "../../components/wrappers/addModalWrapper";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addAccount,

@@ -3,7 +3,6 @@ import { router, useGlobalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { View } from "react-native";
 import { v4 as uuidv4 } from "uuid";
-import AddModalWrapper from "../../components/addModalWrapper";
 import CategoryGroupBottomSheet from "../../components/bottomSheets/categoryGroupBottomSheet";
 import CategoryDatePicker from "../../components/categoryDatePicker";
 import {
@@ -17,6 +16,7 @@ import {
   SettingsTitle,
   sharedStyles,
 } from "../../components/settingsComponents";
+import AddModalWrapper from "../../components/wrappers/addModalWrapper";
 import { CATEGORY_TYPE_DROPDOWN_ITEMS } from "../../constants/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {

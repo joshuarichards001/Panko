@@ -9,8 +9,8 @@ import {
   type StyleProp,
   type ViewStyle,
 } from "react-native";
-import { textStyles } from "../constants/textStyles";
-import { Text, useThemeColor } from "./themed";
+import { textStyles } from "../../constants/textStyles";
+import { Text, useThemeColor } from "../themed";
 
 interface IProps {
   children: React.ReactNode;

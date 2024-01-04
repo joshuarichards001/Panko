@@ -1,7 +1,7 @@
 import { useGlobalSearchParams } from "expo-router";
 import React from "react";
-import AddModalWrapper from "../../components/addModalWrapper";
 import { Text } from "../../components/themed";
+import AddModalWrapper from "../../components/wrappers/addModalWrapper";
 import { useAppSelector } from "../../redux/hooks";
 import { deleteTransaction } from "../../redux/slices/transactionSlice";
 
