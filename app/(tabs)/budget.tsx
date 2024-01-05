@@ -28,6 +28,13 @@ export default function Budget(): React.JSX.Element {
       ))}
       <SettingsButton
         onPress={() => {
+          router.push("/addCategoryModal");
+        }}
+      >
+        <Text>Add Category</Text>
+      </SettingsButton>
+      <SettingsButton
+        onPress={() => {
           router.push("/addTransactionModal");
         }}
       >

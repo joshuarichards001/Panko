@@ -56,7 +56,7 @@ export default function AddCategoryModal(): JSX.Element {
   };
 
   const addCategoryToStore = (addAnother: boolean): boolean => {
-    if (name === "" || categoryGroupId === "" || type === "" || goal === "") {
+    if (name === "" || categoryGroupId === "" || type === "") {
       return false;
     }
 

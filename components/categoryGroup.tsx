@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Category from "./category";
 import { Text } from "./themed";
 
@@ -13,7 +13,7 @@ interface Props {
 
 export default function CategoryGroup({ categoryGroup }: Props): JSX.Element {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>{categoryGroup.name}</Text>
       <View>
         {categoryGroup.categories.map((category) => {
@@ -23,3 +23,11 @@ export default function CategoryGroup({ categoryGroup }: Props): JSX.Element {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 5,
+    marginBottom: 5,
+    padding: 5,
+  },
+});
