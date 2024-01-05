@@ -142,7 +142,7 @@ export default function AddTransactionModal(): React.JSX.Element {
             Save and Add Another
           </SettingsAddAnotherButton>
           <SettingsButton onPress={() => addTransactionToStore(false)}>
-            Add Category
+            Add Transaction
           </SettingsButton>
         </View>
       </BottomSheetModalProvider>

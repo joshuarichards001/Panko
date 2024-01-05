@@ -87,7 +87,7 @@ export default function AddPayeeModal(): JSX.Element {
         </SettingsGroupContainer>
 
         <SettingsButton onPress={() => addPayeeToStore()}>
-          Add Account
+          Add Payee
         </SettingsButton>
       </BottomSheetModalProvider>
     </AddModalWrapper>
