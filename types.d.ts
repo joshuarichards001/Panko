@@ -67,9 +67,9 @@ interface ITransaction {
   payeeId?: string;
   categoryGroupId: string;
   categoryId: string;
-  type: "income" | "expense";
+  type: ITransactionType;
   amount: number;
-  date: string;
+  date: number;
 }
 
 type ICategoryType =
@@ -82,6 +82,8 @@ type ICategoryType =
   | "open-no-goal";
 
 type IAccountType = "checking" | "saving" | "debt";
+
+type ITransactionType = "income" | "expense";
 
 interface IPickerItem {
   label: string;
