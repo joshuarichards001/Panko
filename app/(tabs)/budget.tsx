@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
+import CategoryGroup from "../../components/categoryGroup";
 import { SettingsButton } from "../../components/settingsComponents";
 import { Text } from "../../components/themed";
 import { tabStyles } from "../../constants/styles";
@@ -8,21 +9,22 @@ import { useAppSelector } from "../../redux/hooks";
 
 export default function Budget(): React.JSX.Element {
   const categories = useAppSelector((state) => state.categories);
+  const categoryGroups = useAppSelector((state) => state.categoryGroups);
+
+  const categoryGroupsWithCategories = categoryGroups.map((group) => {
+    const groupCategories = categories.filter(
+      (category) => category.categoryGroupId === group.id,
+    );
+    return {
+      ...group,
+      categories: groupCategories,
+    };
+  });
 
   return (
     <View style={tabStyles.container}>
-      {categories.map((category) => (
-        <TouchableOpacity
-          key={category.id}
-          onPress={() => {
-            router.push({
-              pathname: "/addCategoryModal",
-              params: { categoryId: category.id },
-            });
-          }}
-        >
-          <Text>{category.name}</Text>
-        </TouchableOpacity>
+      {categoryGroupsWithCategories.map((categoryGroup) => (
+        <CategoryGroup categoryGroup={categoryGroup} key={categoryGroup.id} />
       ))}
       <SettingsButton
         onPress={() => {
