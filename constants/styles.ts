@@ -22,6 +22,12 @@ export const onboardingStyles = StyleSheet.create({
   },
 });
 
+export const tabStyles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+});
+
 export const generalStyles = StyleSheet.create({
   boxShadow: {
     ...Platform.select({

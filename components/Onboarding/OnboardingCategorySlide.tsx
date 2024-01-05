@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { onboardingStyles } from "../../constants/styles";
-import SettingsButton from "../settingsButton";
+import { SettingsButton } from "../settingsComponents";
 import { Text, TitleText } from "../themed";
 
 interface Props {
@@ -68,11 +68,12 @@ export default function OnboardingCategorySlide({
         </View>
       </View>
       <SettingsButton
-        text="List My Accounts"
         onPress={() => {
           handlePageTurn("forward");
         }}
-      />
+      >
+        <Text>List My Accounts</Text>
+      </SettingsButton>
     </View>
   );
 }

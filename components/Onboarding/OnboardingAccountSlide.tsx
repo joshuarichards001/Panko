@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { onboardingStyles } from "../../constants/styles";
-import SettingsButton from "../settingsButton";
+import { SettingsButton } from "../settingsComponents";
 import { Text, TitleText } from "../themed";
 
 interface Props {
@@ -67,7 +67,9 @@ export default function OnboardingAccountSlide({
           </ScrollView>
         </View>
       </View>
-      <SettingsButton text="Start Budgeting!" onPress={completeOnboarding} />
+      <SettingsButton onPress={completeOnboarding}>
+        <Text>Start Budgeting!</Text>
+      </SettingsButton>
     </View>
   );
 }

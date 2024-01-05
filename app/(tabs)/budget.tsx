@@ -1,33 +1,29 @@
 import { router } from "expo-router";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { SettingsButton } from "../../components/settingsComponents";
 import { Text } from "../../components/themed";
+import { tabStyles } from "../../constants/styles";
+import { useAppSelector } from "../../redux/hooks";
 
 export default function Budget(): React.JSX.Element {
+  const categories = useAppSelector((state) => state.categories);
+
   return (
-    <View style={styles.container}>
-      <SettingsButton
-        onPress={() => {
-          router.push("/addAccountModal");
-        }}
-      >
-        <Text>Add Account</Text>
-      </SettingsButton>
-      <SettingsButton
-        onPress={() => {
-          router.push("/addCategoryModal");
-        }}
-      >
-        <Text>Add Category</Text>
-      </SettingsButton>
-      <SettingsButton
-        onPress={() => {
-          router.push("/addPayeeModal");
-        }}
-      >
-        <Text>Add Payee</Text>
-      </SettingsButton>
+    <View style={tabStyles.container}>
+      {categories.map((category) => (
+        <TouchableOpacity
+          key={category.id}
+          onPress={() => {
+            router.push({
+              pathname: "/addCategoryModal",
+              params: { categoryId: category.id },
+            });
+          }}
+        >
+          <Text>{category.name}</Text>
+        </TouchableOpacity>
+      ))}
       <SettingsButton
         onPress={() => {
           router.push("/addTransactionModal");
@@ -38,9 +34,3 @@ export default function Budget(): React.JSX.Element {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-});
