@@ -1,10 +1,9 @@
 import { router } from "expo-router";
 import React from "react";
-import { View } from "react-native";
 import CategoryGroup from "../../components/categoryGroup";
 import { SettingsButton } from "../../components/settingsComponents";
 import { Text } from "../../components/themed";
-import { tabStyles } from "../../constants/styles";
+import PageWrapper from "../../components/wrappers/pageWrapper";
 import { useAppSelector } from "../../redux/hooks";
 
 export default function Budget(): React.JSX.Element {
@@ -22,7 +21,7 @@ export default function Budget(): React.JSX.Element {
   });
 
   return (
-    <View style={tabStyles.container}>
+    <PageWrapper>
       {categoryGroupsWithCategories.map((categoryGroup) => (
         <CategoryGroup categoryGroup={categoryGroup} key={categoryGroup.id} />
       ))}
@@ -40,6 +39,6 @@ export default function Budget(): React.JSX.Element {
       >
         <Text>Add Transaction</Text>
       </SettingsButton>
-    </View>
+    </PageWrapper>
   );
 }

@@ -1,15 +1,25 @@
 import { router } from "expo-router";
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { Text } from "./themed";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { Text, useThemeColor } from "./themed";
 
 interface Props {
   category: ICategory;
+  isLast?: boolean;
 }
 
-export default function Category({ category }: Props): JSX.Element {
+export default function Category({ category, isLast }: Props): JSX.Element {
+  const { grey2 } = useThemeColor();
+
   return (
     <TouchableOpacity
+      style={[
+        styles.container,
+        {
+          borderBottomWidth: isLast !== undefined && isLast ? 0 : 1,
+          borderBottomColor: grey2,
+        },
+      ]}
       key={category.id}
       onPress={() => {
         router.push({
@@ -22,3 +32,10 @@ export default function Category({ category }: Props): JSX.Element {
     </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+  },
+});

@@ -1,15 +1,15 @@
 import { router } from "expo-router";
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { SettingsButton } from "../../components/settingsComponents";
 import { Text } from "../../components/themed";
-import { tabStyles } from "../../constants/styles";
+import PageWrapper from "../../components/wrappers/pageWrapper";
 import { useAppSelector } from "../../redux/hooks";
 
 export default function Transactions(): React.JSX.Element {
   const transactions = useAppSelector((state) => state.transactions);
   return (
-    <View style={tabStyles.container}>
+    <PageWrapper>
       {transactions.map((transaction) => (
         <TouchableOpacity
           key={transaction.id}
@@ -30,6 +30,6 @@ export default function Transactions(): React.JSX.Element {
       >
         <Text>Add Transaction</Text>
       </SettingsButton>
-    </View>
+    </PageWrapper>
   );
 }

@@ -37,6 +37,12 @@ export const textStyles = StyleSheet.create({
     fontFamily: "InterRegular",
     letterSpacing: 0.2,
   },
+  sb: {
+    fontSize: 14,
+    // lineHeight: 1.5,
+    fontFamily: "InterBold",
+    letterSpacing: 0.2,
+  },
   xs: {
     fontSize: 12,
     // lineHeight: 1.5,

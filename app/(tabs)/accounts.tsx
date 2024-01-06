@@ -1,28 +1,18 @@
 import { router } from "expo-router";
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import Account from "../../components/account";
 import { SettingsButton } from "../../components/settingsComponents";
 import { Text } from "../../components/themed";
-import { tabStyles } from "../../constants/styles";
+import PageWrapper from "../../components/wrappers/pageWrapper";
 import { useAppSelector } from "../../redux/hooks";
 
 export default function Accounts(): React.JSX.Element {
   const accounts = useAppSelector((state) => state.accounts);
 
   return (
-    <View style={tabStyles.container}>
+    <PageWrapper>
       {accounts.map((account) => (
-        <TouchableOpacity
-          key={account.id}
-          onPress={() => {
-            router.push({
-              pathname: "/addAccountModal",
-              params: { accountId: account.id },
-            });
-          }}
-        >
-          <Text key={account.id}>{account.name}</Text>
-        </TouchableOpacity>
+        <Account account={account} key={account.id} />
       ))}
       <SettingsButton
         onPress={() => {
@@ -31,6 +21,6 @@ export default function Accounts(): React.JSX.Element {
       >
         <Text>Add Account</Text>
       </SettingsButton>
-    </View>
+    </PageWrapper>
   );
 }
