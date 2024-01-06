@@ -56,6 +56,8 @@ export interface ITheme {
   primary: string;
   secondary: string;
   error: string;
+  error2: string;
+  success2: string;
   grey1: string;
   grey2: string;
   grey3: string;
@@ -75,6 +77,8 @@ export const colors: {
     primary: colorPalette.primary500,
     secondary: colorPalette.secondary500,
     error: colorPalette.red500,
+    error2: colorPalette.red800,
+    success2: colorPalette.green800,
     grey1: colorPalette.neutral100,
     grey2: colorPalette.neutral200,
     grey3: colorPalette.neutral300,
@@ -89,6 +93,8 @@ export const colors: {
     primary: colorPalette.primary500,
     secondary: colorPalette.secondary500,
     error: colorPalette.red500,
+    error2: colorPalette.red200,
+    success2: colorPalette.green200,
     grey1: colorPalette.neutral900,
     grey2: colorPalette.neutral800,
     grey3: colorPalette.neutral700,
