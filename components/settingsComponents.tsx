@@ -163,6 +163,22 @@ const SettingsButton = ({ children, onPress }: IButtonProps): JSX.Element => {
   );
 };
 
+const SettingsSubtleButton = ({
+  children,
+  onPress,
+}: IButtonProps): JSX.Element => {
+  const { grey5 } = useThemeColor();
+
+  return (
+    <TouchableOpacity
+      style={[styles.settingsSubtleButton, { borderColor: grey5 }]}
+      onPress={onPress}
+    >
+      <Text style={[textStyles.m, { color: grey5 }]}>{children}</Text>
+    </TouchableOpacity>
+  );
+};
+
 const SettingsAddAnotherButton = ({
   children,
   onPress,
@@ -308,6 +324,7 @@ export {
   SettingsPicker,
   SettingsSearchBar,
   SettingsSegmentedControl,
+  SettingsSubtleButton,
   SettingsTitle,
 };
 
@@ -334,6 +351,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
     width: "100%",
+  },
+  settingsSubtleButton: {
+    padding: 10,
+    borderRadius: 16,
+    alignItems: "center",
+    width: "100%",
+    borderWidth: 1,
+    borderStyle: "dashed",
   },
   settingsAddAnotherButton: {
     paddingBottom: 20,

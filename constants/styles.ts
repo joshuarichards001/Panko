@@ -42,4 +42,10 @@ export const generalStyles = StyleSheet.create({
       },
     }),
   },
+  tabAddButton: {
+    position: "absolute",
+    bottom: 16,
+    left: 16,
+    width: "100%",
+  },
 });
