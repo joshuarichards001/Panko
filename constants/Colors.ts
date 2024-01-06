@@ -50,13 +50,20 @@ const colorPalette = {
 
 export interface ITheme {
   text: string;
+  textBlack: string;
   background: string;
   tabIconDefault: string;
   tabIconSelected: string;
   primary: string;
+  primaryChipText: string;
+  primaryChipBackground: string;
   secondary: string;
+  secondaryChipText: string;
+  secondaryChipBackground: string;
   error: string;
   error2: string;
+  errorChipText: string;
+  errorChipBackground: string;
   success2: string;
   grey1: string;
   grey2: string;
@@ -71,13 +78,20 @@ export const colors: {
 } = {
   light: {
     text: colorPalette.black,
+    textBlack: colorPalette.black,
     background: colorPalette.white,
     tabIconDefault: colorPalette.neutral400,
     tabIconSelected: colorPalette.primary500,
     primary: colorPalette.primary500,
+    primaryChipText: colorPalette.primary800,
+    primaryChipBackground: colorPalette.primary100,
     secondary: colorPalette.secondary500,
+    secondaryChipText: colorPalette.secondary800,
+    secondaryChipBackground: colorPalette.secondary100,
     error: colorPalette.red500,
     error2: colorPalette.red800,
+    errorChipText: colorPalette.red800,
+    errorChipBackground: colorPalette.red100,
     success2: colorPalette.green800,
     grey1: colorPalette.neutral100,
     grey2: colorPalette.neutral200,
@@ -87,13 +101,20 @@ export const colors: {
   },
   dark: {
     text: colorPalette.white,
+    textBlack: colorPalette.black,
     background: colorPalette.black,
     tabIconDefault: colorPalette.neutral400,
     tabIconSelected: colorPalette.white,
     primary: colorPalette.primary500,
+    primaryChipText: colorPalette.primary100,
+    primaryChipBackground: colorPalette.primary800,
     secondary: colorPalette.secondary500,
+    secondaryChipText: colorPalette.secondary100,
+    secondaryChipBackground: colorPalette.secondary800,
     error: colorPalette.red500,
     error2: colorPalette.red200,
+    errorChipText: colorPalette.red100,
+    errorChipBackground: colorPalette.red800,
     success2: colorPalette.green200,
     grey1: colorPalette.neutral900,
     grey2: colorPalette.neutral800,

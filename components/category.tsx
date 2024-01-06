@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text, useThemeColor } from "./themed";
 
 interface Props {
@@ -9,7 +9,10 @@ interface Props {
 }
 
 export default function Category({ category, isLast }: Props): JSX.Element {
-  const { grey2 } = useThemeColor();
+  const { grey2, primaryChipText, primaryChipBackground } = useThemeColor();
+
+  const chipText = primaryChipText;
+  const chipBackground = primaryChipBackground;
 
   return (
     <TouchableOpacity
@@ -29,6 +32,9 @@ export default function Category({ category, isLast }: Props): JSX.Element {
       }}
     >
       <Text>{category.name}</Text>
+      <View style={[styles.allocatedChip, { backgroundColor: chipBackground }]}>
+        <Text style={{ color: chipText }}>${category.allocated}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -37,5 +43,11 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
     paddingHorizontal: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  allocatedChip: {
+    borderRadius: 999,
+    paddingHorizontal: 5,
   },
 });
