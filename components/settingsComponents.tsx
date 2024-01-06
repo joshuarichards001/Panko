@@ -147,7 +147,7 @@ const SettingsDollarInput = ({ value, setValue }: IInputProps): JSX.Element => {
 };
 
 const SettingsButton = ({ children, onPress }: IButtonProps): JSX.Element => {
-  const { primary } = useThemeColor();
+  const { primary, textBlack } = useThemeColor();
 
   return (
     <TouchableOpacity
@@ -158,7 +158,7 @@ const SettingsButton = ({ children, onPress }: IButtonProps): JSX.Element => {
       ]}
       onPress={onPress}
     >
-      <Text style={textStyles.m}>{children}</Text>
+      <Text style={[textStyles.m, { color: textBlack }]}>{children}</Text>
     </TouchableOpacity>
   );
 };

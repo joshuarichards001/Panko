@@ -25,7 +25,7 @@ export default function OnboardingWelcomeSlide({
           handlePageTurn("forward");
         }}
       >
-        <Text>Get Started!</Text>
+        Get Started!
       </SettingsButton>
     </View>
   );

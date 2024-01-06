@@ -68,7 +68,7 @@ export default function OnboardingAccountSlide({
         </View>
       </View>
       <SettingsButton onPress={completeOnboarding}>
-        <Text>Start Budgeting!</Text>
+        Start Budgeting!
       </SettingsButton>
     </View>
   );

@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import Account from "../../components/account";
 import { SettingsButton } from "../../components/settingsComponents";
-import { Text, useThemeColor } from "../../components/themed";
+import { useThemeColor } from "../../components/themed";
 import PageWrapper from "../../components/wrappers/pageWrapper";
 import { useAppSelector } from "../../redux/hooks";
 
@@ -28,7 +28,7 @@ export default function Accounts(): React.JSX.Element {
           router.push("/addAccountModal");
         }}
       >
-        <Text>Add Account</Text>
+        Add Account
       </SettingsButton>
     </PageWrapper>
   );

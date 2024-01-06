@@ -28,7 +28,7 @@ export default function Transactions(): React.JSX.Element {
           router.push("/addTransactionModal");
         }}
       >
-        <Text>Add Transaction</Text>
+        Add Transaction
       </SettingsButton>
     </PageWrapper>
   );

@@ -72,7 +72,7 @@ export default function OnboardingCategorySlide({
           handlePageTurn("forward");
         }}
       >
-        <Text>List My Accounts</Text>
+        List My Accounts
       </SettingsButton>
     </View>
   );

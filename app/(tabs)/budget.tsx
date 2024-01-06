@@ -2,7 +2,6 @@ import { router } from "expo-router";
 import React from "react";
 import CategoryGroup from "../../components/categoryGroup";
 import { SettingsButton } from "../../components/settingsComponents";
-import { Text } from "../../components/themed";
 import PageWrapper from "../../components/wrappers/pageWrapper";
 import { useAppSelector } from "../../redux/hooks";
 
@@ -30,14 +29,14 @@ export default function Budget(): React.JSX.Element {
           router.push("/addCategoryModal");
         }}
       >
-        <Text>Add Category</Text>
+        Add Category
       </SettingsButton>
       <SettingsButton
         onPress={() => {
           router.push("/addTransactionModal");
         }}
       >
-        <Text>Add Transaction</Text>
+        Add Transaction
       </SettingsButton>
     </PageWrapper>
   );
